@@ -71,6 +71,21 @@ def two_tone_html(lines: list[str]) -> str:
     return "\n".join(out)
 
 
+def ddg_params(c: dict, dark: bool, font: str) -> dict:
+    """DuckDuckGo's official appearance parameters (duckduckgo.com/params) in your colours."""
+    h = lambda x: x.lstrip("#")                                        # noqa: E731
+    return {"kae": "d" if dark else "-1", "k7": h(c["base"]), "k8": h(c["text"]), "k9": h(c["accent"]),
+            "kaa": h(c["accent2"]), "kx": h(c["subtext"]), "kj": h(c["mantle"]), "kt": font, "ka": font,
+            "ku": "-1"}
+
+
+def ddg_search_url(cfg: dict) -> str:
+    """For LibreWolf → Settings → Search → Add: a DuckDuckGo engine in your colours."""
+    from urllib.parse import urlencode
+    r = themes.resolved(cfg)
+    return "https://duckduckgo.com/?q=%s&" + urlencode(ddg_params(r["c"], r["palette"].dark, r["font"]))
+
+
 def context(cfg: dict) -> dict:
     r = themes.resolved(cfg)
     c = r["c"]
@@ -95,6 +110,9 @@ def context(cfg: dict) -> dict:
         "banner_html": two_tone_html(asc.best_banner(banner_text, 100)),
         "title": banner_text, "search_name": eng[0], "search_url": eng[1], "search_param": eng[2],
         "groups": bm.groups_for_startpage(cfg.get("bookmarks", [])),
+        "ddg": ddg_params(c, r["palette"].dark, r["font"])
+        if cfg["sites"].get("duckduckgo", True) and sp.get("search") == "duckduckgo" else {},
+        "packs": {k for k, v in cfg["sites"].get("packs", {}).items() if v},
     }
 
 

@@ -78,6 +78,8 @@ button { border-radius: 0; background: transparent; color: var(--accent); border
 {% endif %}
       <form action="{{ search_url }}" method="get" role="search">
         <input type="search" name="{{ search_param }}" id="q" placeholder="search {{ search_name }} …" autocomplete="off" autofocus>
+{% for k, v in ddg.items() %}        <input type="hidden" name="{{ k }}" value="{{ v | e }}">
+{% endfor %}
         <button type="submit">go</button>
       </form>
       <div class="hint">type anywhere to search · 1-9 open the first links · esc clears</div>

@@ -45,6 +45,12 @@ PRIVACY_LEVELS = {
     "fortress": "Maximum: + WebRTC off, WebGL off, letterboxing, strict referrers – some sites break",
 }
 
+SITE_PACKS = {
+    "github": "GitHub – recolours GitHub's own colour variables (Primer)",
+    "wikipedia": "Wikipedia – recolours Wikipedia's design tokens (Codex)",
+    "youtube": "YouTube – recolours YouTube's colour variables",
+}
+
 SITE_MODES = {
     "invert": "Dark: smart invert (images stay normal)",
     "dim": "Dim: lower brightness + warm tint",
@@ -82,6 +88,8 @@ DEFAULTS: dict = {
         "focus_ring": True,
         "caret": True,
         "rules": [],                 # [{domain, mode}]
+        "duckduckgo": True,          # DuckDuckGo in your colours (official settings parameters)
+        "packs": {"github": False, "wikipedia": False, "youtube": False},   # experimental site themes
     },
     "startpage": {
         "enabled": True,

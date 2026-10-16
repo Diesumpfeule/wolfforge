@@ -13,13 +13,16 @@ wolfforge rebuilds LibreWolf's look and settings from a single file, `wolfforge.
 a terminal app to edit it. With [swayforge](https://github.com/Diesumpfeule/swayforge) it follows
 your system theme automatically; on its own it brings 15 themes and lets you make and save your own.
 
-- **Theme** – toolbars, tabs, menus, address bar, about: pages, new tab and start page in your
-  colours and Nerd Font. Follow swayforge, pick one, or edit colours and **save your own**.
+- **Theme** – toolbars, tabs, address bar, **every menu and panel** (app menu, context menus,
+  downloads, extensions, bookmarks, site info), tooltips, sidebar, about: pages, new tab and start
+  page in your colours and Nerd Font – on top of LibreWolf's built-in dark/light theme, so nothing
+  falls back to grey. Follow swayforge, pick one, or edit colours and **save your own**.
 - **Layouts** – Classic, Compact (tabs + address bar in one row), Minimal (toolbar hides until
   Ctrl+L), Classic 98 (bevels, title-bar tabs), Wired (terminal look). Tabs on top, vertical or hidden.
 - **Your toolbar** – pick and order the buttons; saved in the file, restored on every machine.
 - **Websites** – safe touches that can't break anything (dark-mode request, scrollbars, selection,
-  caret, focus ring) + opt-in per-site rules (invert / dim / theme) for sites without a dark mode.
+  caret, focus ring), **DuckDuckGo in your colours** (its official appearance settings), experimental
+  theme packs for GitHub, Wikipedia and YouTube, + opt-in per-site rules (invert / dim / theme).
 - **Start page** – 3D banner, ASCII art, clock, search, your bookmarks as tiles; type anywhere to
   search, 1–9 open links. The new-tab page gets your ASCII art too.
 - **Privacy levels** – *comfort* / *librewolf* / *fortress*, plus switches for Firefox Sync,
@@ -93,6 +96,14 @@ title = "GitHub"
 url = "https://github.com/"
 folder = "Toolbar/Dev"    # Toolbar | Menu | Other + subfolders
 ```
+
+## DuckDuckGo in your colours
+
+DuckDuckGo has official appearance parameters (background, text, links, header, font). wolfforge
+fills them with your theme: every search from the start page is themed automatically. For the
+address bar, add it once as a search engine – the app's *Websites → Copy search URL* gives you the
+link, then LibreWolf → *Settings → Search → Search Shortcuts → Add*, paste, and pick it as default.
+(Search engines can only be set by you inside the browser – on purpose, so nothing can hijack them.)
 
 ## Privacy levels
 

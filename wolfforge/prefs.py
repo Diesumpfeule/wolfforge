@@ -62,6 +62,10 @@ def look_prefs(cfg: dict, r: dict, start_url: str | None) -> dict:
         "browser.uiCustomization.state": toolbar_state(cfg),
         "sidebar.revamp": t["tabs"] == "vertical",
         "sidebar.verticalTabs": t["tabs"] == "vertical",
+        # built-in Dark/Light theme underneath: anything wolfforge doesn't reach is dark, not grey
+        "extensions.activeThemeID": "firefox-compact-dark@mozilla.org" if dark
+        else "firefox-compact-light@mozilla.org",
+        "ui.systemUsesDarkTheme": 1 if dark else 0,
         "browser.theme.content-theme": 0 if dark else 1,
         "browser.theme.toolbar-theme": 0 if dark else 1,
         "layout.css.prefers-color-scheme.content-override": (0 if dark else 1) if s["dark_request"] else 2,

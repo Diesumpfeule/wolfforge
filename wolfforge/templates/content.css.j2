@@ -93,6 +93,55 @@ input, textarea, [contenteditable] { caret-color: {{ c.accent }}; }
   }
 }
 {% endif %}
+{% if "github" in packs %}
+
+/* ── Theme pack: GitHub (Primer colour variables) – experimental ─────────────── */
+@-moz-document domain("github.com") {
+  :root, [data-color-mode], [data-color-mode] * {
+    --bgColor-default: {{ c.base }} !important; --bgColor-muted: {{ c.mantle }} !important;
+    --bgColor-inset: {{ c.crust }} !important; --bgColor-emphasis: {{ c.surface2 }} !important;
+    --bgColor-accent-muted: {{ rgba(c.accent, 0.15) }} !important; --bgColor-accent-emphasis: {{ c.accent }} !important;
+    --fgColor-default: {{ c.text }} !important; --fgColor-muted: {{ c.subtext }} !important;
+    --fgColor-accent: {{ c.accent }} !important; --fgColor-onEmphasis: {{ on_accent }} !important;
+    --borderColor-default: {{ c.surface2 }} !important; --borderColor-muted: {{ c.surface }} !important;
+    --borderColor-accent-emphasis: {{ c.accent }} !important;
+    --button-default-bgColor-rest: {{ c.surface }} !important; --button-default-bgColor-hover: {{ c.surface2 }} !important;
+    --button-default-fgColor-rest: {{ c.text }} !important;
+    --header-bgColor: {{ c.mantle }} !important; --overlay-bgColor: {{ c.mantle }} !important;
+  }
+}
+{% endif %}
+{% if "wikipedia" in packs %}
+
+/* ── Theme pack: Wikipedia (Codex design tokens) – experimental ──────────────── */
+@-moz-document domain("wikipedia.org"), domain("wikimedia.org"), domain("wiktionary.org") {
+  :root, html.skin-theme-clientpref-night, html.skin-theme-clientpref-os {
+    --background-color-base: {{ c.base }} !important; --background-color-neutral-subtle: {{ c.mantle }} !important;
+    --background-color-neutral: {{ c.surface }} !important; --background-color-interactive-subtle: {{ c.mantle }} !important;
+    --background-color-interactive: {{ c.surface }} !important;
+    --color-base: {{ c.text }} !important; --color-emphasized: {{ c.text }} !important;
+    --color-subtle: {{ c.subtext }} !important; --color-placeholder: {{ c.overlay }} !important;
+    --color-progressive: {{ c.accent }} !important; --color-progressive--hover: {{ mix(c.accent, c.text, 0.2) }} !important;
+    --color-visited: {{ c.accent2 }} !important;
+    --border-color-base: {{ c.surface2 }} !important; --border-color-subtle: {{ c.surface }} !important;
+    --border-color-muted: {{ c.surface }} !important;
+  }
+}
+{% endif %}
+{% if "youtube" in packs %}
+
+/* ── Theme pack: YouTube (yt-spec colour variables) – experimental ───────────── */
+@-moz-document domain("youtube.com") {
+  html, html[dark], ytd-app, ytd-masthead, tp-yt-iron-dropdown, ytd-popup-container {
+    --yt-spec-base-background: {{ c.base }} !important; --yt-spec-raised-background: {{ c.mantle }} !important;
+    --yt-spec-menu-background: {{ c.mantle }} !important; --yt-spec-general-background-a: {{ c.base }} !important;
+    --yt-spec-general-background-b: {{ c.mantle }} !important; --yt-spec-general-background-c: {{ c.crust }} !important;
+    --yt-spec-text-primary: {{ c.text }} !important; --yt-spec-text-secondary: {{ c.subtext }} !important;
+    --yt-spec-call-to-action: {{ c.accent }} !important; --yt-spec-badge-chip-background: {{ c.surface }} !important;
+    --yt-spec-10-percent-layer: {{ c.surface2 }} !important; --yt-spec-outline: {{ c.surface2 }} !important;
+  }
+}
+{% endif %}
 {% for r in s.rules %}
 {% if r.mode != "off" %}
 

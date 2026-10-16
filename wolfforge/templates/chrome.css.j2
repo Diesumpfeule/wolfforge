@@ -111,10 +111,84 @@
 /* ── Address bar & menus ───────────────────────────────────────────────────────── */
 #urlbar-background { border-radius: {{ radius }}px !important; }
 #urlbar[focused] #urlbar-background { outline: 1px solid {{ c.accent }} !important; outline-offset: -1px; }
-menupopup, panel { --panel-padding: 4px; }
-menupopup > menuitem[_moz-menuactive], menupopup > menu[_moz-menuactive] {
+
+/* ── Every popup, menu and panel: colours set ON the element ─────────────────────
+   Firefox gives panels and menus their own colour variables, which would win over
+   the ones on :root – so they're repeated here, directly on every popup. */
+panel, menupopup, panelview, panelmultiview, .panel-viewstack, .panel-viewcontainer,
+#appMenu-popup, #widget-overflow, #downloadsPanel, #unified-extensions-panel, #identity-popup,
+#permission-popup, #protections-popup, #editBookmarkPanel, #notification-popup,
+#customizationui-widget-panel, #sidebarMenu-popup, #BMB_bookmarksPopup, #PanelUI-history,
+.popup-notification-panel, #confirmation-hint, tooltip, #tab-preview-panel {
+  --panel-background: {{ c.mantle }} !important;
+  --panel-color: {{ c.text }} !important;
+  --panel-border-color: {{ c.surface2 }} !important;
+  --panel-separator-color: {{ c.surface2 }} !important;
+  --panel-border-radius: {{ radius }}px !important;
+  --panel-padding: 4px;
+  --panel-item-hover-bgcolor: {{ rgba(c.accent, 0.18) }} !important;
+  --panel-item-active-bgcolor: {{ rgba(c.accent, 0.32) }} !important;
+  --panel-banner-item-background-color: {{ c.surface }} !important;
+  --arrowpanel-background: {{ c.mantle }} !important;
+  --arrowpanel-color: {{ c.text }} !important;
+  --arrowpanel-border-color: {{ c.surface2 }} !important;
+  --arrowpanel-border-radius: {{ radius }}px !important;
+  --arrowpanel-dimmed: {{ rgba(c.accent, 0.12) }} !important;
+  --arrowpanel-dimmed-further: {{ rgba(c.accent, 0.22) }} !important;
+  --arrowpanel-dimmed-even-further: {{ rgba(c.accent, 0.32) }} !important;
+  --button-background-color: {{ c.surface }} !important;
+  --button-background-color-hover: {{ c.surface2 }} !important;
+  --button-text-color: {{ c.text }} !important;
+  --button-primary-bgcolor: {{ c.accent }} !important;
+  --button-primary-color: {{ on_accent }} !important;
+  --menu-background-color: {{ c.mantle }} !important;
+  --menu-color: {{ c.text }} !important;
+  --menu-border-color: {{ c.surface2 }} !important;
+  --menu-disabled-color: {{ c.overlay }} !important;
+  --menuitem-hover-background-color: {{ rgba(c.accent, 0.22) }} !important;
+  --menuitem-disabled-hover-background-color: {{ rgba(c.text, 0.05) }} !important;
+  --input-bgcolor: {{ c.crust }} !important;
+  --input-color: {{ c.text }} !important;
+  --input-border-color: {{ c.surface2 }} !important;
+  --focus-outline-color: {{ c.accent }} !important;
+  color-scheme: {{ "dark" if p.dark else "light" }} !important;
+}
+/* GTK draws native menus itself on Linux – switch that off so our colours show */
+menupopup, tooltip { appearance: none !important; }
+menupopup::part(content), .menupopup-arrowscrollbox, panel::part(content),
+panelview, .panel-subview-body, .panel-header, .panel-footer, #appMenu-popup .panel-subview-body {
+  background-color: {{ c.mantle }} !important;
+  color: {{ c.text }} !important;
+  border-color: {{ c.surface2 }} !important;
+}
+menupopup::part(content), panel::part(content) {
+  border: 1px solid {{ c.surface2 }} !important;
+  border-radius: {{ radius }}px !important;
+}
+tooltip { background-color: {{ c.mantle }} !important; color: {{ c.text }} !important;
+  border: 1px solid {{ c.surface2 }} !important; border-radius: {{ radius }}px !important; }
+menupopup > menuitem[_moz-menuactive], menupopup > menu[_moz-menuactive],
+.subviewbutton:not([disabled]):hover, .subviewbutton[open], .toolbaritem-combined-buttons > .subviewbutton:hover,
+.PanelUI-subView .subviewbutton:focus-visible {
   background-color: {{ rgba(c.accent, 0.22) }} !important; color: {{ c.text }} !important;
 }
+menuseparator::before, toolbarseparator { border-color: {{ c.surface2 }} !important; }
+#appMenu-fxa-label2, .panel-banner-item { background-color: {{ c.surface }} !important; }
+#downloadsListBox, #downloadsPanel .panel-view-body-unscrollable { background: transparent !important; }
+
+/* notification bars, dialogs, sidebar */
+notification-message, .notificationbox-stack notification-message {
+  --message-bar-background-color: {{ c.surface }} !important;
+  --message-bar-text-color: {{ c.text }} !important;
+  --message-bar-icon-color: {{ c.accent }} !important;
+  border-radius: {{ radius }}px !important;
+}
+#sidebar-box, #sidebar, #sidebar-header, .sidebar-panel {
+  background-color: {{ c.mantle }} !important; color: {{ c.text }} !important;
+  --sidebar-background-color: {{ c.mantle }} !important; --sidebar-text-color: {{ c.text }} !important;
+}
+.dialogBox, .tab-modal-prompt, dialog { background-color: {{ c.mantle }} !important; color: {{ c.text }} !important; }
+#browser, #tabbrowser-tabbox, #tabbrowser-tabpanels, .browserStack { background-color: {{ c.base }} !important; }
 #statuspanel-label { background: {{ c.mantle }} !important; color: {{ c.subtext }} !important;
   border-color: {{ c.surface2 }} !important; border-radius: {{ radius }}px !important; }
 findbar { background: {{ c.mantle }} !important; border-top: 1px solid {{ c.surface2 }} !important; }

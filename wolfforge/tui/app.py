@@ -290,6 +290,19 @@ class WolfforgeApp(App):
             field(cfg, "sites.selection", "Text selection in your accent", "bool"),
             field(cfg, "sites.caret", "Cursor (caret) in your accent", "bool"),
             field(cfg, "sites.focus_ring", "Focus ring in your accent", "bool"),
+            section("DuckDuckGo in your colours"),
+            Static("Uses DuckDuckGo's own appearance settings (background, text, links, header, font) – "
+                   "works on every search started from the start page. For the address bar, add it once "
+                   "as a search engine: Copy URL → LibreWolf Settings → Search → Search Shortcuts → Add, "
+                   "paste, then pick it as default engine.", classes="hint"),
+            field(cfg, "sites.duckduckgo", "Theme DuckDuckGo", "bool"),
+            Horizontal(Button("Copy search URL", id="ddg_copy", variant="primary"),
+                       Button("Open search settings", id="ddg_settings"), classes="btnrow"),
+            section("Theme packs (experimental)"),
+            Static("Recolour sites that build their look from colour variables – they keep working, only "
+                   "colours change. If a site's update renames its variables, the pack simply does nothing.",
+                   classes="hint"),
+            *[field(cfg, f"sites.packs.{k}", v, "bool") for k, v in config.SITE_PACKS.items()],
             section("Per-site rules (opt-in)"),
             Static("For sites without a dark mode. 'invert' works almost everywhere, 'theme' only on "
                    "simple text sites. Remove a rule if a site looks wrong.", classes="hint"),
@@ -560,6 +573,19 @@ class WolfforgeApp(App):
             self.edit_colors = dict(themes.active(self.cfg).colors)
             for k, v in self.edit_colors.items():
                 self.query_one(f"#col__{k}", Input).value = v
+        elif bid == "ddg_copy":
+            url = generate.ddg_search_url(self.cfg)
+            copied = False
+            if shutil.which("wl-copy"):
+                copied = subprocess.run(["wl-copy", url], check=False).returncode == 0
+            (paths.STATE_DIR / "duckduckgo-search-url.txt").write_text(url + "\n")
+            self.notify(("Copied! " if copied else "Saved to ~/.local/share/wolfforge/duckduckgo-search-url.txt – ")
+                        + "LibreWolf → Settings → Search → Search Shortcuts → Add → paste. "
+                        "Name it e.g. 'DuckDuckGo (themed)', keyword @d, then choose it as default.", timeout=12)
+            self.copy_to_clipboard(url)
+        elif bid == "ddg_settings":
+            if not self.open_in_browser("about:preferences#search"):
+                self.notify("LibreWolf not found", severity="error")
         elif bid == "start_open":
             self.action_apply()
             if not self.open_in_browser((paths.STATE_DIR / "start.html").as_uri()):
