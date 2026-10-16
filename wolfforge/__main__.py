@@ -24,7 +24,7 @@ def _print_result(res: generate.Result, quiet: bool) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(prog="wolfforge", description="LibreWolf overhaul – theme, layout, toolbar, "
+    ap = argparse.ArgumentParser(epilog="Proof of concept, written by Claude (Anthropic). No warranty – use at your own risk.", prog="wolfforge", description="LibreWolf overhaul – theme, layout, toolbar, "
                                  "privacy and bookmarks from one file")
     sub = ap.add_subparsers(dest="cmd")
     p = sub.add_parser("app", help="open the app (default)")

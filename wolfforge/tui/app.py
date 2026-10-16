@@ -399,6 +399,9 @@ class WolfforgeApp(App):
             Horizontal(Input(str(paths.HOME / "wolfforge.toml"), id="io_path"),
                        Button("Export", id="export", variant="primary"), Button("Import", id="import"),
                        classes="btnrow"),
+            section("About"),
+            Static("wolfforge – proof of concept, written by Claude (Anthropic). Provided as is, without any "
+                   "warranty; use at your own risk. Not affiliated with LibreWolf or Mozilla.", classes="hint"),
             section("Profile"),
             field(self.cfg, "general.profile", "LibreWolf profile folder",
                   help=f"empty = default ({str(prof).replace(str(paths.HOME), '~') if prof else 'none found'})"),

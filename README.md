@@ -7,6 +7,8 @@
   bookmarks · Firefox import – all in <b>one file</b>
 </p>
 
+> ⚠ **Proof of concept, written by Claude (AI) – no warranty, use at your own risk.** See [Disclaimer](#disclaimer).
+
 wolfforge rebuilds LibreWolf's look and settings from a single file, `wolfforge.toml`, and gives you
 a terminal app to edit it. With [swayforge](https://github.com/Diesumpfeule/swayforge) it follows
 your system theme automatically; on its own it brings 15 themes and lets you make and save your own.
@@ -152,6 +154,33 @@ wolfforge status
 - With resist-fingerprinting on (levels *librewolf*, *fortress*) every site sees "light", so the
   dark-mode request can't work there – use per-site rules instead.
 - LibreWolf as Flatpak works too (profile under `~/.var/app/io.gitlab.librewolf-community`).
+
+## Credits
+
+The bundled colour themes are based on these palettes – all credit for the colours goes to
+their authors: [Catppuccin](https://github.com/catppuccin/catppuccin),
+[Dracula](https://draculatheme.com), [Everforest](https://github.com/sainnhe/everforest),
+[Gruvbox](https://github.com/morhetz/gruvbox), [Nord](https://www.nordtheme.com),
+[Rosé Pine](https://rosepinetheme.com) and
+[Tokyo Night](https://github.com/enkia/tokyo-night-vscode-theme).
+The retro themes (Type O, Rust, Green Night, Phosphor, Amber, Wired, Clean) and all ASCII art
+are original to this project; "Type O" and "Rust" are fan-made tributes and not affiliated with
+anyone.
+
+Built for [LibreWolf](https://librewolf.net) with [Textual](https://textual.textualize.io).
+Not affiliated with LibreWolf or Mozilla – "Firefox" is a trademark of the Mozilla Foundation.
+
+## Disclaimer
+
+**This is a proof of concept** – not finished, not polished and not tested on every setup.
+The code was written by **Claude**, an AI model by Anthropic, following my ideas and
+instructions. It is provided **as is, without any warranty**, and I take **no responsibility**
+for anything it does to your system, your data or your accounts. Read the scripts before you
+run them – use at your own risk.
+
+## Contributions
+
+This is a personal project: pull requests and outside code are not accepted. Feel free to fork it.
 
 ## License
 
