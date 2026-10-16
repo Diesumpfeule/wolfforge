@@ -232,9 +232,9 @@ class WolfforgeApp(App):
                    for k in themes.COLOR_KEYS]
         return self.page(
             "look",
-            Horizontal(Static(two_tone(asc.shadow("wolf"), f"bold {c['accent']}",
+            Horizontal(Static(two_tone(asc.best_banner("wolf", 60), f"bold {c['accent']}",
                                        themes.mix(c["accent"], c["base"], 0.5)), id="hero_banner"),
-                       Static(two_tone(r["art"][:12], c["accent2"], c["overlay"]), id="hero_art"), id="hero"),
+                       Static(two_tone(r["art"], c["accent2"], c["overlay"]), id="hero_art"), id="hero"),
             Static("Recolours LibreWolf's toolbars, tabs, menus, address bar, about: pages, new tab and "
                    "start page. With swayforge it follows your system theme automatically.", classes="hint"),
             field(cfg, "general.follow_system", "Follow the system theme (swayforge)", "bool",

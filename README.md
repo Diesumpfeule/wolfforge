@@ -23,7 +23,7 @@ your system theme automatically; on its own it brings 15 themes and lets you mak
 - **Websites** – safe touches that can't break anything (dark-mode request, scrollbars, selection,
   caret, focus ring), **DuckDuckGo in your colours** (its official appearance settings), experimental
   theme packs for GitHub, Wikipedia and YouTube, + opt-in per-site rules (invert / dim / theme).
-- **Start page** – 3D banner, ASCII art, clock, search, your bookmarks as tiles; type anywhere to
+- **Start page** – shaded ASCII banner and art, clock, search, your bookmarks as tiles; type anywhere to
   search, 1–9 open links. The new-tab page gets your ASCII art too.
 - **Privacy levels** – *comfort* / *librewolf* / *fortress*, plus switches for Firefox Sync,
   passwords and DRM.

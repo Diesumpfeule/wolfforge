@@ -40,9 +40,13 @@ class Result:
 
 
 def bevel(c: dict) -> dict:
-    return {"face": c["surface"], "hi": themes.mix(c["surface"], c["text"], 0.35),
-            "lo": c["crust"], "pressed": c["mantle"],
-            "title": c["accent2"], "title2": c["accent"]}
+    """Win98 3D-edge colours – the exact same formula as swayforge's render.bevel(),
+    so the browser and the Classic 98 bar show identical greys and title gradients."""
+    mix = themes.mix
+    face = mix(c["surface"], c["text"], 0.10)
+    return {"face": face, "hi": mix(face, c["text"], 0.6), "lo": mix(face, c["crust"], 0.85),
+            "dk": c["crust"], "pressed": mix(face, c["crust"], 0.35), "title": c["accent"],
+            "title2": mix(c["accent"], c["base"], 0.55)}
 
 
 def css_string(lines: list[str]) -> str:
