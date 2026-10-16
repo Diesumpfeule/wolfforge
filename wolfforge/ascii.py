@@ -128,7 +128,7 @@ def _bundled() -> dict[str, str]:
 
 
 ART_NAMES = ("forge", "anvil", "bat", "moon", "rose", "skull", "lantern", "crt", "terminal",
-             "gamepad", "cyberdeck", "wired")
+             "gamepad", "cyberdeck", "wired", "rosewindow")
 
 
 def user_art() -> dict[str, str]:

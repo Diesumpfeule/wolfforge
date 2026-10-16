@@ -22,9 +22,10 @@ LAYOUTS = {
     "minimal": "Minimal – toolbar hides, appears on hover or Ctrl+L (keyboard use)",
     "win98": "Classic 98 – bevelled buttons, sunken address bar, title-bar tabs",
     "wired": "Wired – terminal look: [brackets], > prompt, scanlines",
+    "cathedral": "Cathedral – gothic: serif tabs with ✠, double rules, framed start page",
 }
 TAGS = {"classic": "░▒▓ librewolf", "compact": "▓▒░", "minimal": "░▒▓ librewolf",
-        "win98": "■ LibreWolf 98", "wired": "[ wired :: online ]"}
+        "win98": "■ LibreWolf 98", "wired": "[ wired :: online ]", "cathedral": "❦ ✠ ❦"}
 
 _env = jinja2.Environment(loader=jinja2.FileSystemLoader(Path(__file__).parent / "templates"),
                           trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True,

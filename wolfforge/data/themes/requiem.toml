@@ -1,0 +1,29 @@
+label = "Requiem (gothic cathedral)"
+dark = true
+ansi = ["#141014", "#b8303f", "#4f8a5b", "#b89a5a", "#6a7896", "#8a5a8a", "#6a9a94", "#b9aea2", "#2c2329", "#d0485a", "#68a774", "#d4b878", "#8494b4", "#a878a8", "#88b8b0", "#ece4d8"]
+
+[colors]
+crust = "#050405"
+mantle = "#0a080a"
+base = "#0e0b0e"
+surface = "#1a1519"
+surface2 = "#2c2329"
+overlay = "#5e5259"
+text = "#e8e0d4"
+subtext = "#a99d92"
+accent = "#c23a4b"
+accent2 = "#2f5a3c"
+red = "#c23a4b"
+green = "#5c9a68"
+yellow = "#c4a468"
+orange = "#b06a3c"
+blue = "#7282a4"
+magenta = "#9a669a"
+cyan = "#74a49e"
+
+[style]
+radius = 0
+layout = "cathedral"
+wallpaper = "cathedral"
+ascii = "rosewindow"
+boot = "ascii"

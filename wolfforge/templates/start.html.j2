@@ -56,6 +56,24 @@ input[type=search] { border: 2px solid; border-color: {{ bv.lo }} {{ bv.hi }} {{
 button { border: 2px solid; border-color: {{ bv.hi }} {{ bv.lo }} {{ bv.lo }} {{ bv.hi }}; border-radius: 0;
   background: {{ bv.face }}; color: var(--text); }
 button:active { border-color: {{ bv.lo }} {{ bv.hi }} {{ bv.hi }} {{ bv.lo }}; }
+{% elif layout == "cathedral" %}
+html, body { font-family: "DejaVu Serif", serif; }
+pre, pre * { font-family: "{{ font }}", ui-monospace, monospace; }
+body { min-height: 100vh; background-image: repeating-linear-gradient(to right, {{ rgba(c.text, 0.025) }} 0 2px, transparent 2px 28px),
+  radial-gradient(ellipse at 50% 18%, {{ rgba(c.accent, 0.16) }}, transparent 60%); }
+main { border: 3px double {{ rgba(c.accent, 0.8) }}; outline: 1px solid {{ rgba(c.text, 0.18) }}; outline-offset: 8px;
+  padding: 28px 34px 22px; position: relative; }
+main::before, main::after { content: "❦  ─────────  ✠  ─────────  ❦"; display: block; text-align: center;
+  color: var(--accent); letter-spacing: 2px; margin: 0 0 18px; }
+main::after { margin: 22px 0 0; content: "· ✠ ·"; color: var(--overlay); }
+.clock { font-family: "DejaVu Serif", serif; letter-spacing: 6px; color: var(--text); }
+.clock::before, .clock::after { content: " ✠ "; color: var(--accent); font-size: 22px; vertical-align: middle; }
+.group { border-radius: 0; background: {{ rgba(c.crust, 0.7) }}; border: 1px solid {{ rgba(c.text, 0.18) }};
+  box-shadow: inset 0 0 0 3px {{ c.mantle }}, inset 0 0 0 4px {{ rgba(c.accent, 0.35) }}; }
+.group h2 { font-family: "DejaVu Serif", serif; letter-spacing: 3px; }
+.group h2::before { content: "❦ "; } .group h2::after { content: " ❦"; }
+input[type=search] { border-radius: 0; border-color: {{ rgba(c.text, 0.3) }}; background: var(--crust); }
+button { border-radius: 0; font-family: "DejaVu Serif", serif; }
 {% elif layout == "wired" %}
 body { background-image: repeating-linear-gradient(to bottom, transparent 0 2px, {{ rgba(c.accent, 0.04) }} 2px 3px); }
 .group { background: transparent; border-color: var(--accent); border-radius: 0; }

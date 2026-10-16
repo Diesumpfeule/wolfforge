@@ -26,7 +26,8 @@ SYSTEM_ID = "system"
 
 # swayforge bar layout → browser layout that matches it
 LAYOUT_FROM_SWAY = {"win98": "win98", "win7": "classic", "wired": "wired", "minimal": "minimal",
-                    "sidebar": "classic", "modern": "classic", "solid": "classic"}
+                    "sidebar": "classic", "modern": "classic", "solid": "classic",
+                    "cathedral": "cathedral"}
 
 
 @dataclass

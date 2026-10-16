@@ -314,6 +314,19 @@ menupopup, panel { --panel-border-radius: 0 !important; }
 menupopup::part(content), .panel-arrowcontent {
   border: 2px solid !important; border-color: {{ bv.hi }} {{ bv.lo }} {{ bv.lo }} {{ bv.hi }} !important;
 }
+{% elif layout == "cathedral" %}
+/* Cathedral: stone toolbars, double rule in the accent, serif tabs marked with a cross */
+#navigator-toolbox { background: linear-gradient(to bottom, {{ c.surface }}, {{ c.crust }}) !important;
+  border-bottom: 4px double {{ c.accent }} !important; }
+#TabsToolbar, #nav-bar, #PersonalToolbar { background: transparent !important; }
+.tab-label { font-family: "DejaVu Serif", serif !important; letter-spacing: 0.5px; }
+.tabbrowser-tab .tab-background { border-radius: 0 !important; border-left: 1px solid {{ rgba(c.text, 0.10) }} !important; }
+.tabbrowser-tab[selected] .tab-background { background: linear-gradient(to top, {{ rgba(c.accent, 0.30) }}, transparent) !important;
+  box-shadow: inset 0 -2px {{ c.accent }} !important; }
+.tabbrowser-tab[selected] .tab-label::before { content: "✠  "; color: {{ c.accent }}; }
+#urlbar-background { border-radius: 0 !important; background: {{ c.crust }} !important;
+  border: 1px solid {{ rgba(c.text, 0.25) }} !important; outline: 1px solid {{ rgba(c.accent, 0.5) }} !important; outline-offset: 2px; }
+#urlbar-input { font-family: "DejaVu Serif", serif !important; }
 {% elif layout == "wired" %}
 /* Wired: text-terminal look – brackets, prompt, scanlines, hard edges */
 #navigator-toolbox {
