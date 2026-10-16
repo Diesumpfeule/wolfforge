@@ -117,6 +117,8 @@ def context(cfg: dict) -> dict:
         "ddg": ddg_params(c, r["palette"].dark, r["font"])
         if cfg["sites"].get("duckduckgo", True) and sp.get("search") == "duckduckgo" else {},
         "packs": {k for k, v in cfg["sites"].get("packs", {}).items() if v},
+        "animate": bool(cfg["general"].get("animate", True)),
+        "shade_chars": "".join(sorted(asc.SHADE)),
     }
 
 

@@ -71,6 +71,7 @@ DEFAULTS: dict = {
         "font_size": 13,
         "radius": -1,                # -1 = from theme (retro themes → 0)
         "art": "auto",
+        "animate": True,             # ASCII art glints and twinkles (start page, new tab, app)
         "density": "compact",        # compact | normal | touch
     },
     "toolbar": {

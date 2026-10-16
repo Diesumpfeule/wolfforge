@@ -99,6 +99,45 @@ def two_tone(lines: list[str], face: str, shade: str) -> Text:
     return t
 
 
+class AnimatedArt(Static):
+    """ASCII art that glints and twinkles (same effect as swayforge and the start page)."""
+
+    def __init__(self, lines: list[str], palette: dict[str, str], animate: bool = True, **kw) -> None:
+        super().__init__("", **kw)
+        self.lines, self.palette, self.animate = lines, palette, animate
+        self._timer = None
+
+    def on_mount(self) -> None:
+        import time
+        self._t0 = time.monotonic()
+        self.set_animate(self.animate)
+
+    def _draw(self) -> None:
+        import time
+        from ..anim import rich_frame
+        t = (time.monotonic() - self._t0 + 3.0) if self.animate else 10_000.0
+        self.update(rich_frame(self.lines, t, self.palette))
+
+    def set_animate(self, on: bool) -> None:
+        self.animate = on
+        if on and self._timer is None:
+            self._timer = self.set_interval(1 / 12, self._draw)
+        elif not on and self._timer is not None:
+            self._timer.stop()
+            self._timer = None
+        self._draw()
+
+    def set_art(self, lines: list[str], palette: dict[str, str]) -> None:
+        self.lines, self.palette = lines, palette
+        self._draw()
+
+
+def art_palette(c: dict, main: str = "accent", bold: bool = False) -> dict[str, str]:
+    b = "bold " if bold else ""
+    return {"face": f"{b}{c[main]}", "shade": themes.mix(c[main], c["base"], 0.5),
+            "glint": f"bold {c['text']}", "hot": f"bold {c['yellow']}"}
+
+
 def swatch(c: dict) -> Text:
     t = Text()
     for k in ("base", "surface", "accent", "accent2", "red", "green", "yellow", "blue", "magenta", "cyan"):
@@ -199,6 +238,14 @@ class WolfforgeApp(App):
         self.theme = th.name
         for x in ("win98", "wired"):
             self.set_class(self.cfg["general"]["layout"] == x, f"-ui-{x}")
+        r = themes.resolved(self.cfg)
+        on = bool(self.cfg["general"].get("animate", True))
+        for w in self.query("#hero_art").results(AnimatedArt):
+            w.set_art(r["art"], art_palette(r["c"], "accent2"))
+            w.set_animate(on)
+        for w in self.query("#hero_banner").results(AnimatedArt):
+            w.set_art(asc.best_banner("wolf", 60), art_palette(r["c"], bold=True))
+            w.set_animate(on)
 
     def action_redraw(self) -> None:
         self.refresh(repaint=True, layout=True)
@@ -233,9 +280,10 @@ class WolfforgeApp(App):
                    for k in themes.COLOR_KEYS]
         return self.page(
             "look",
-            Horizontal(Static(two_tone(asc.best_banner("wolf", 60), f"bold {c['accent']}",
-                                       themes.mix(c["accent"], c["base"], 0.5)), id="hero_banner"),
-                       Static(two_tone(r["art"], c["accent2"], c["overlay"]), id="hero_art"), id="hero"),
+            Horizontal(AnimatedArt(asc.best_banner("wolf", 60), art_palette(c, bold=True),
+                                   cfg["general"].get("animate", True), id="hero_banner"),
+                       AnimatedArt(r["art"], art_palette(c, "accent2"), cfg["general"].get("animate", True),
+                                   id="hero_art"), id="hero"),
             Static("Recolours LibreWolf's toolbars, tabs, menus, address bar, about: pages, new tab and "
                    "start page. With swayforge it follows your system theme automatically.", classes="hint"),
             field(cfg, "general.follow_system", "Follow the system theme (swayforge)", "bool",
@@ -243,6 +291,7 @@ class WolfforgeApp(App):
             ListView(*items, id="themelist", classes="list", initial_index=ids.index(cur) if cur in ids else 0),
             field(cfg, "general.accent", "Accent colour", "choice", acc),
             field(cfg, "general.art", "ASCII art", "choice", arts, help="start page, new tab, header"),
+            field(cfg, "general.animate", "Animate the ASCII art", "bool", help="glint + sparks, here and in LibreWolf"),
             field(cfg, "general.font", "Font", help="empty = theme/system font · a Nerd Font looks best"),
             field(cfg, "general.font_size", "Font size", "int"),
             field(cfg, "general.radius", "Corner radius", "int", help="-1 = from theme · 0 = square"),
@@ -484,7 +533,7 @@ class WolfforgeApp(App):
         w = ev.switch.id or ""
         if w.startswith("f__"):
             put(self.cfg, path_of(w), ev.value)
-            if w == wid("general.follow_system"):
+            if w in (wid("general.follow_system"), wid("general.animate")):
                 self.use_palette()
             self.changed()
 
@@ -493,7 +542,7 @@ class WolfforgeApp(App):
         w = ev.select.id or ""
         if w.startswith("f__") and ev.value is not Select.BLANK:
             put(self.cfg, path_of(w), ev.value)
-            if w in (wid("general.accent"),):
+            if w in (wid("general.accent"), wid("general.art")):
                 self.use_palette()
             self.changed()
 

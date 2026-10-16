@@ -20,6 +20,8 @@ body { display: flex; justify-content: center; padding: 6vh 24px 40px; }
 main { width: min(1100px, 100%); }
 pre { margin: 0; font: inherit; line-height: 1.12; white-space: pre; }
 .two .s { color: var(--shade); } .two .f { color: var(--accent); }
+.two .g { color: var(--text); text-shadow: 0 0 6px var(--accent); }
+.two .h { color: {{ c.yellow }}; text-shadow: 0 0 5px {{ c.yellow }}; }
 .banner { font-size: {{ font_size - 1 }}px; font-weight: bold; text-align: center; margin-bottom: 26px; overflow: hidden; }
 .banner pre { display: inline-block; text-align: left; }
 .hero { display: flex; gap: 36px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
@@ -106,6 +108,47 @@ function tick() {
   document.getElementById("date").textContent = d.toLocaleDateString([], {weekday: "long", day: "numeric", month: "long"});
 }
 tick(); setInterval(tick, 10000);
+{% if animate %}
+// Animated ASCII art – same effect as in swayforge: a glint sweeps across, lone sparks twinkle
+(() => {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const SHADE = new Set({{ shade_chars | tojson }}), SPARK = new Set("*+.'`");
+  const PERIOD = 6, SWEEP = 1.4, BAND = 5;
+  const hash = (...v) => { let h = 2166136261; for (const x of v) h = Math.imul(h ^ (x >>> 0), 16777619) >>> 0; return h / 4294967295; };
+  const arts = [...document.querySelectorAll(".two pre, pre.two")].map(pre => {
+    const lines = pre.textContent.split("\n"); pre.textContent = "";
+    const cells = [];
+    lines.forEach((line, r) => {
+      [...line].forEach((ch, c) => {
+        const sp = document.createElement("span"); sp.textContent = ch;
+        if (ch !== " ") {
+          const lone = (c === 0 || line[c - 1] === " ") && (c + 1 >= line.length || line[c + 1] === " ");
+          cells.push({sp, r, c, ch, base: SHADE.has(ch) ? "s" : "f", spark: SPARK.has(ch) && lone, cls: ""});
+        }
+        pre.appendChild(sp);
+      });
+      if (r < lines.length - 1) pre.appendChild(document.createTextNode("\n"));
+    });
+    return {cells, width: Math.max(...lines.map(l => l.length)), rows: lines.length};
+  });
+  const t0 = performance.now() - 3000;
+  function frame() {
+    const t = (performance.now() - t0) / 1000, slot = Math.floor(t * 4);
+    for (const a of arts) {
+      const phase = (t % PERIOD) / SWEEP;
+      const pos = phase <= 1 ? -BAND + phase * (a.width + a.rows * 2 + BAND * 2) : -1e9;
+      for (const x of a.cells) {
+        let cls = x.base, ch = x.ch;
+        if (x.spark && hash(x.r, x.c, slot) < 0.35) { cls = "h"; ch = ".+*'"[Math.floor(hash(x.c, x.r, slot) * 4)]; }
+        else { const d = x.c + x.r * 2 - pos; if (d >= 0 && d < BAND) cls = "g"; }
+        if (cls !== x.cls) { x.sp.className = cls; x.cls = cls; }
+        if (x.sp.textContent !== ch) x.sp.textContent = ch;
+      }
+    }
+  }
+  frame(); setInterval(frame, 83);
+})();
+{% endif %}
 document.addEventListener("keydown", e => {
   if (e.ctrlKey || e.altKey || e.metaKey) return;
   if (e.key === "Escape") { q.value = ""; q.blur(); return; }
