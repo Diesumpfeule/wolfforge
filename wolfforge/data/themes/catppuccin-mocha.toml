@@ -1,0 +1,22 @@
+label = "Catppuccin Mocha"
+dark = true
+ansi = ["#45475a", "#f38ba8", "#a6e3a1", "#f9e2af", "#89b4fa", "#f5c2e7", "#94e2d5", "#bac2de", "#585b70", "#f38ba8", "#a6e3a1", "#f9e2af", "#89b4fa", "#f5c2e7", "#94e2d5", "#a6adc8"]
+
+[colors]
+crust = "#11111b"
+mantle = "#181825"
+base = "#1e1e2e"
+surface = "#313244"
+surface2 = "#45475a"
+overlay = "#6c7086"
+text = "#cdd6f4"
+subtext = "#a6adc8"
+accent = "#cba6f7"
+accent2 = "#89b4fa"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+orange = "#fab387"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"

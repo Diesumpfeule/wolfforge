@@ -1,0 +1,29 @@
+label = "Type O (retro, green)"
+dark = true
+ansi = ["#0e140e", "#a8323a", "#3fae5a", "#9db04a", "#3f8f6a", "#7f4f7f", "#4fae9a", "#a9c9a4", "#2e452e", "#c9474f", "#5fd77a", "#bccf5f", "#5fb08a", "#a06aa0", "#6fcfb8", "#d4ecd0"]
+
+[colors]
+crust = "#030503"
+mantle = "#070a07"
+base = "#0a0e0a"
+surface = "#122012"
+surface2 = "#1c321c"
+overlay = "#3a5a3a"
+text = "#b9dcb2"
+subtext = "#7fa877"
+accent = "#3fbf5f"
+accent2 = "#1f7f3a"
+red = "#b8343c"
+green = "#5fd77a"
+yellow = "#a9bf4f"
+orange = "#bf8a3f"
+blue = "#4f9f7a"
+magenta = "#8f5a8f"
+cyan = "#5fbfaa"
+
+[style]
+radius = 0
+wallpaper = "gothic"
+layout = "solid"
+ascii = "bat"
+boot = "ascii"

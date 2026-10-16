@@ -1,0 +1,31 @@
+label = "Phosphor (retro CRT)"
+dark = true
+ansi = ["#06140a", "#e0603a", "#33ff66", "#b8ff5c", "#2fd17a", "#5fffa0", "#8affc1", "#9dffb6", "#1a4a26", "#ff7a52", "#66ff8c", "#d4ff85", "#5ff0a0", "#8affba", "#b0ffd6", "#d8ffe2"]
+
+[colors]
+crust = "#000300"
+mantle = "#020802"
+base = "#040c05"
+surface = "#0b1f0f"
+surface2 = "#143a1c"
+overlay = "#2a7a40"
+text = "#5dff86"
+subtext = "#2fbf59"
+accent = "#33ff66"
+accent2 = "#1faa48"
+red = "#ff6a3d"
+green = "#33ff66"
+yellow = "#c8ff5c"
+orange = "#ffa53d"
+blue = "#3fe0a0"
+magenta = "#7fffb0"
+cyan = "#8affc1"
+
+[style]
+radius = 0
+font = "Terminess Nerd Font"
+font_size = 13
+wallpaper = "crt"
+layout = "solid"
+ascii = "crt"
+boot = "bios"

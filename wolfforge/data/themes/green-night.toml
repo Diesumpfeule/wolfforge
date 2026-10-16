@@ -1,0 +1,29 @@
+label = "Green Night (retro, Win98 look)"
+dark = true
+ansi = ["#0d2a16", "#e0506a", "#3fbf4f", "#e8e0a0", "#5468ff", "#9a7aff", "#6ad0ff", "#c8ccf0", "#2f6b3a", "#ff6a84", "#5fdf6f", "#f4eebc", "#7d8cff", "#b79cff", "#94e0ff", "#eef0ff"]
+
+[colors]
+crust = "#020a04"
+mantle = "#04120a"
+base = "#061a0d"
+surface = "#0e2c17"
+surface2 = "#184424"
+overlay = "#2f6b3a"
+text = "#e3e6ff"
+subtext = "#a9b4e8"
+accent = "#5468ff"
+accent2 = "#2f9a3f"
+red = "#e0506a"
+green = "#3fbf4f"
+yellow = "#e8e0a0"
+orange = "#e0a050"
+blue = "#5468ff"
+magenta = "#9a7aff"
+cyan = "#6ad0ff"
+
+[style]
+radius = 0
+layout = "win98"
+wallpaper = "night"
+ascii = "moon"
+boot = "ascii"

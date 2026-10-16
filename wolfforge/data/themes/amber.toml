@@ -1,0 +1,31 @@
+label = "Amber (retro CRT)"
+dark = true
+ansi = ["#140c02", "#ff5a3a", "#ffb000", "#ffcc33", "#e0a040", "#ffbf60", "#ffd080", "#ffcf8a", "#4a3010", "#ff7a52", "#ffc233", "#ffe066", "#f0b860", "#ffd090", "#ffe0a8", "#fff0d0"]
+
+[colors]
+crust = "#030200"
+mantle = "#080500"
+base = "#0c0802"
+surface = "#21160a"
+surface2 = "#3a2810"
+overlay = "#7a5420"
+text = "#ffc04a"
+subtext = "#c88a2a"
+accent = "#ffb000"
+accent2 = "#c07800"
+red = "#ff5a3a"
+green = "#d8c040"
+yellow = "#ffd24a"
+orange = "#ff8c1a"
+blue = "#e0a860"
+magenta = "#ff9a6a"
+cyan = "#ffd890"
+
+[style]
+radius = 0
+font = "Terminess Nerd Font"
+font_size = 13
+wallpaper = "crt"
+layout = "solid"
+ascii = "crt"
+boot = "bios"

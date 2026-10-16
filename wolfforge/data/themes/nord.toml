@@ -1,0 +1,22 @@
+label = "Nord"
+dark = true
+ansi = ["#3b4252", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#88c0d0", "#e5e9f0", "#4c566a", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead", "#8fbcbb", "#eceff4"]
+
+[colors]
+crust = "#242933"
+mantle = "#2a303c"
+base = "#2e3440"
+surface = "#3b4252"
+surface2 = "#4c566a"
+overlay = "#616e88"
+text = "#eceff4"
+subtext = "#d8dee9"
+accent = "#88c0d0"
+accent2 = "#81a1c1"
+red = "#bf616a"
+green = "#a3be8c"
+yellow = "#ebcb8b"
+orange = "#d08770"
+blue = "#81a1c1"
+magenta = "#b48ead"
+cyan = "#8fbcbb"

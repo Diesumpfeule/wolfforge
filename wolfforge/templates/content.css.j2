@@ -1,0 +1,114 @@
+@charset "UTF-8";
+/* {{ mark }} – rebuilt by `wolfforge apply`. Your own rules go into ../userContent.css. */
+
+/* ── Safe touches for every website ───────────────────────────────────────────────
+   No !important: a site's own styles always win, so nothing can break. */
+{% if s.scrollbars %}
+:root { scrollbar-color: {{ mix(c.accent, c.base, 0.35) }} transparent; }
+{% endif %}
+{% if s.selection %}
+::selection { background-color: {{ c.accent }}; color: {{ on_accent }}; }
+{% endif %}
+{% if s.caret %}
+input, textarea, [contenteditable] { caret-color: {{ c.accent }}; }
+{% endif %}
+{% if s.focus_ring %}
+:focus-visible { outline-color: {{ c.accent }}; }
+{% endif %}
+
+/* ── Browser pages (about:preferences, about:addons, …) ─────────────────────────── */
+@-moz-document url-prefix("about:"), url-prefix("chrome://browser/content/") {
+  :root {
+    color-scheme: {{ "dark" if p.dark else "light" }} !important;
+    --in-content-page-background: {{ c.base }} !important;
+    --in-content-page-color: {{ c.text }} !important;
+    --in-content-text-color: {{ c.text }} !important;
+    --in-content-deemphasized-text: {{ c.subtext }} !important;
+    --in-content-box-background: {{ c.mantle }} !important;
+    --in-content-box-background-odd: {{ c.surface }} !important;
+    --in-content-box-border-color: {{ c.surface2 }} !important;
+    --in-content-box-info-background: {{ c.surface }} !important;
+    --in-content-item-hover: {{ rgba(c.accent, 0.15) }} !important;
+    --in-content-item-hover-text: {{ c.text }} !important;
+    --in-content-item-selected: {{ c.accent }} !important;
+    --in-content-item-selected-text: {{ on_accent }} !important;
+    --in-content-border-color: {{ c.surface2 }} !important;
+    --in-content-border-hover: {{ c.overlay }} !important;
+    --in-content-border-active: {{ c.accent }} !important;
+    --in-content-accent-color: {{ c.accent }} !important;
+    --in-content-accent-color-active: {{ c.accent2 }} !important;
+    --in-content-link-color: {{ c.accent }} !important;
+    --in-content-link-color-hover: {{ mix(c.accent, c.text, 0.25) }} !important;
+    --in-content-primary-button-background: {{ c.accent }} !important;
+    --in-content-primary-button-background-hover: {{ mix(c.accent, c.text, 0.15) }} !important;
+    --in-content-primary-button-text-color: {{ on_accent }} !important;
+    --in-content-button-background: {{ c.surface }} !important;
+    --in-content-button-background-hover: {{ c.surface2 }} !important;
+    --in-content-button-text-color: {{ c.text }} !important;
+    --in-content-table-background: {{ c.mantle }} !important;
+    --background-color-canvas: {{ c.base }} !important;
+    --background-color-box: {{ c.mantle }} !important;
+    --text-color: {{ c.text }} !important;
+    --text-color-deemphasized: {{ c.subtext }} !important;
+    --border-color: {{ c.surface2 }} !important;
+    --color-accent-primary: {{ c.accent }} !important;
+    --color-accent-primary-hover: {{ mix(c.accent, c.text, 0.15) }} !important;
+    --link-color: {{ c.accent }} !important;
+    --focus-outline-color: {{ c.accent }} !important;
+    --border-radius-small: {{ [radius, 4] | min }}px !important;
+    --border-radius-medium: {{ radius }}px !important;
+    --border-radius-large: {{ radius }}px !important;
+    accent-color: {{ c.accent }} !important;
+  }
+  body, html { font-family: "{{ font }}", sans-serif !important; }
+}
+{% if sp.newtab %}
+
+/* ── New tab: your ASCII art above the search ───────────────────────────────────── */
+@-moz-document url("about:newtab"), url("about:home") {
+  :root {
+    --newtab-background-color: {{ c.base }} !important;
+    --newtab-background-color-secondary: {{ c.mantle }} !important;
+    --newtab-text-primary-color: {{ c.text }} !important;
+    --newtab-text-secondary-color: {{ c.subtext }} !important;
+    --newtab-primary-action-background: {{ c.accent }} !important;
+    --newtab-element-hover-color: {{ rgba(c.accent, 0.15) }} !important;
+    --newtab-element-active-color: {{ rgba(c.accent, 0.3) }} !important;
+    --newtab-border-color: {{ c.surface2 }} !important;
+  }
+  body { background: {{ c.base }} !important; }
+  .logo-and-wordmark-wrapper, .logo-and-wordmark, .wordmark, .personalize-button,
+  .weatherInfoLink, .wallpaper-attribution { display: none !important; }
+  .outer-wrapper { padding-top: calc(7vh + {{ art_rows }} * 15px + 24px) !important; }
+  body::before, body::after {
+    position: absolute; top: 7vh; left: 50%; transform: translateX(-50%);
+    white-space: pre; text-align: left; line-height: 15px; font: bold 13px "{{ font }}", monospace;
+    pointer-events: none; z-index: 1;
+  }
+  body::before { content: {{ art_face }}; color: {{ c.accent }}; }
+  body::after { content: {{ art_shade }}; color: {{ mix(c.accent, c.base, 0.5) }}; }
+  .search-handoff-button, .search-inner-wrapper input {
+    border-radius: {{ radius }}px !important; background-color: {{ c.surface }} !important;
+    color: {{ c.text }} !important; border: 1px solid {{ c.surface2 }} !important;
+  }
+}
+{% endif %}
+{% for r in s.rules %}
+{% if r.mode != "off" %}
+
+/* site rule: {{ r.domain }} → {{ r.mode }} */
+@-moz-document domain("{{ r.domain }}") {
+{% if r.mode == "invert" %}
+  html { filter: invert(0.92) hue-rotate(180deg) !important; background-color: #fff !important; }
+  img, video, picture, canvas, iframe, embed, object, svg image,
+  [style*="background-image"] { filter: invert(1) hue-rotate(180deg) !important; }
+{% elif r.mode == "dim" %}
+  html { filter: brightness(0.82) sepia(0.18) !important; }
+{% elif r.mode == "theme" %}
+  html, body { background-color: {{ c.base }} !important; color: {{ c.text }} !important; }
+  a, a:visited { color: {{ c.accent }} !important; }
+  ::selection { background-color: {{ c.accent }} !important; color: {{ on_accent }} !important; }
+{% endif %}
+}
+{% endif %}
+{% endfor %}

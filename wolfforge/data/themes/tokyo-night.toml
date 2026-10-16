@@ -1,0 +1,22 @@
+label = "Tokyo Night"
+dark = true
+ansi = ["#15161e", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#a9b1d6", "#414868", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#c0caf5"]
+
+[colors]
+crust = "#16161e"
+mantle = "#1a1b26"
+base = "#1a1b26"
+surface = "#24283b"
+surface2 = "#414868"
+overlay = "#565f89"
+text = "#c0caf5"
+subtext = "#a9b1d6"
+accent = "#7aa2f7"
+accent2 = "#bb9af7"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+orange = "#ff9e64"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"

@@ -1,0 +1,31 @@
+label = "Wired (hacker)"
+dark = true
+ansi = ["#16161c", "#ff3355", "#7cff9e", "#f0e68c", "#6e8bff", "#c86bff", "#6ef2ff", "#c8c8c8", "#3a3a46", "#ff5c78", "#a0ffb8", "#f6eeaa", "#93a8ff", "#d895ff", "#9af6ff", "#f0f0f0"]
+
+[colors]
+crust = "#000000"
+mantle = "#040406"
+base = "#08080b"
+surface = "#14141a"
+surface2 = "#24242e"
+overlay = "#4a4a58"
+text = "#d6d6d6"
+subtext = "#8a8a96"
+accent = "#ff3355"
+accent2 = "#b0b0ff"
+red = "#ff3355"
+green = "#7cff9e"
+yellow = "#f0e68c"
+orange = "#ff8c42"
+blue = "#6e8bff"
+magenta = "#c86bff"
+cyan = "#6ef2ff"
+
+[style]
+radius = 0
+layout = "wired"
+font = "Terminess Nerd Font"
+font_size = 13
+wallpaper = "wired"
+ascii = "wired"
+boot = "wired"

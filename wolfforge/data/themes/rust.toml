@@ -1,0 +1,29 @@
+label = "Rust (retro, Win98 look)"
+dark = true
+ansi = ["#1b1d15", "#b8452f", "#8f9a6a", "#c9a84a", "#6f8a8a", "#9a6a5a", "#8aa38f", "#c9cdb0", "#3a3f2d", "#d0603f", "#a9b47f", "#dcbc5e", "#86a3a3", "#b4836f", "#a3bca8", "#e3e6cc"]
+
+[colors]
+crust = "#050504"
+mantle = "#0a0a08"
+base = "#0e0f0b"
+surface = "#1d2017"
+surface2 = "#30352a"
+overlay = "#5c6447"
+text = "#cfd3b4"
+subtext = "#9ea57a"
+accent = "#d0703a"
+accent2 = "#9ea57a"
+red = "#b8452f"
+green = "#8f9a6a"
+yellow = "#c9a84a"
+orange = "#d0703a"
+blue = "#6f8a8a"
+magenta = "#9a6a5a"
+cyan = "#8aa38f"
+
+[style]
+radius = 0
+layout = "win98"
+wallpaper = "rust"
+ascii = "rose"
+boot = "ascii"

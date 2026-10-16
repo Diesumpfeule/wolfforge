@@ -1,0 +1,26 @@
+label = "Clean (base to customize)"
+dark = true
+ansi = ["#2a2a2a", "#d16969", "#8fbf7f", "#d7ba7d", "#7aa2c9", "#b48ead", "#7fc1ca", "#c8c8c8", "#555555", "#e07a7a", "#a3d393", "#e5c890", "#8fb4d9", "#c7a1c0", "#93d3dc", "#eeeeee"]
+
+[colors]
+crust = "#121212"
+mantle = "#171717"
+base = "#1c1c1c"
+surface = "#262626"
+surface2 = "#363636"
+overlay = "#5c5c5c"
+text = "#e4e4e4"
+subtext = "#a8a8a8"
+accent = "#7aa2c9"
+accent2 = "#9a9a9a"
+red = "#d16969"
+green = "#8fbf7f"
+yellow = "#d7ba7d"
+orange = "#d19a66"
+blue = "#7aa2c9"
+magenta = "#b48ead"
+cyan = "#7fc1ca"
+
+[style]
+radius = 4
+wallpaper = "plain"

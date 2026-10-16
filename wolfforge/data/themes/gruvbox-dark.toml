@@ -1,0 +1,22 @@
+label = "Gruvbox Dark"
+dark = true
+ansi = ["#282828", "#cc241d", "#98971a", "#d79921", "#458588", "#b16286", "#689d6a", "#a89984", "#928374", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#ebdbb2"]
+
+[colors]
+crust = "#1d2021"
+mantle = "#232323"
+base = "#282828"
+surface = "#3c3836"
+surface2 = "#504945"
+overlay = "#928374"
+text = "#ebdbb2"
+subtext = "#d5c4a1"
+accent = "#fabd2f"
+accent2 = "#fe8019"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+orange = "#fe8019"
+blue = "#83a598"
+magenta = "#d3869b"
+cyan = "#8ec07c"

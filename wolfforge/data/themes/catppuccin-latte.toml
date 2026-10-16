@@ -1,0 +1,22 @@
+label = "Catppuccin Latte (light)"
+dark = false
+ansi = ["#5c5f77", "#d20f39", "#40a02b", "#df8e1d", "#1e66f5", "#ea76cb", "#179299", "#acb0be", "#6c6f85", "#d20f39", "#40a02b", "#df8e1d", "#1e66f5", "#ea76cb", "#179299", "#bcc0cc"]
+
+[colors]
+crust = "#dce0e8"
+mantle = "#e6e9ef"
+base = "#eff1f5"
+surface = "#ccd0da"
+surface2 = "#bcc0cc"
+overlay = "#9ca0b0"
+text = "#4c4f69"
+subtext = "#6c6f85"
+accent = "#8839ef"
+accent2 = "#1e66f5"
+red = "#d20f39"
+green = "#40a02b"
+yellow = "#df8e1d"
+orange = "#fe640b"
+blue = "#1e66f5"
+magenta = "#ea76cb"
+cyan = "#179299"

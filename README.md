@@ -1,0 +1,158 @@
+<p align="center">
+  <img src="docs/img/banner.svg" alt="wolfforge" width="100%">
+</p>
+
+<p align="center">
+  <b>LibreWolf overhaul</b> · themes · 5 layouts · your toolbar · ASCII start page · privacy levels ·
+  bookmarks · Firefox import – all in <b>one file</b>
+</p>
+
+wolfforge rebuilds LibreWolf's look and settings from a single file, `wolfforge.toml`, and gives you
+a terminal app to edit it. With [swayforge](https://github.com/Diesumpfeule/swayforge) it follows
+your system theme automatically; on its own it brings 15 themes and lets you make and save your own.
+
+- **Theme** – toolbars, tabs, menus, address bar, about: pages, new tab and start page in your
+  colours and Nerd Font. Follow swayforge, pick one, or edit colours and **save your own**.
+- **Layouts** – Classic, Compact (tabs + address bar in one row), Minimal (toolbar hides until
+  Ctrl+L), Classic 98 (bevels, title-bar tabs), Wired (terminal look). Tabs on top, vertical or hidden.
+- **Your toolbar** – pick and order the buttons; saved in the file, restored on every machine.
+- **Websites** – safe touches that can't break anything (dark-mode request, scrollbars, selection,
+  caret, focus ring) + opt-in per-site rules (invert / dim / theme) for sites without a dark mode.
+- **Start page** – 3D banner, ASCII art, clock, search, your bookmarks as tiles; type anywhere to
+  search, 1–9 open links. The new-tab page gets your ASCII art too.
+- **Privacy levels** – *comfort* / *librewolf* / *fortress*, plus switches for Firefox Sync,
+  passwords and DRM.
+- **Bookmarks in the file** – pull from LibreWolf, push back, edit by hand.
+- **From Firefox** – bookmarks, add-on list (one-click install pages) and saved passwords.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="docs/img/start_type-o_classic.png" alt="Start page Type O"><br><sub><b>Start page</b> · Type O · classic</sub></td>
+    <td><img src="docs/img/start_rust_win98.png" alt="Start page Rust"><br><sub><b>Start page</b> · Rust · Classic 98</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/img/start_wired_wired.png" alt="Start page Wired"><br><sub><b>Start page</b> · Wired</sub></td>
+    <td><img src="docs/img/newtab_type-o.png" alt="New tab"><br><sub><b>New tab</b> · ASCII art above the search</sub></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="docs/img/app.png" alt="The app"><br><sub><b>The app</b> · <code>wolfforge</code></sub></td>
+  </tr>
+</table>
+
+## Install
+
+```sh
+git clone https://github.com/Diesumpfeule/wolfforge.git && cd wolfforge
+./install.sh
+```
+
+Installs LibreWolf (official repo) if it's missing, plus `python3-textual` and `python3-jinja2`,
+then opens the app. **With swayforge:** tick *Browser → wolfforge* in the installer – done.
+
+After changing something: `Ctrl+S` (save & apply), then `Ctrl+R` restarts LibreWolf.
+Browser UI changes always need a restart – LibreWolf only reads its style files at startup.
+
+## The one file
+
+`~/.config/wolfforge/wolfforge.toml` holds everything. Back it up, put it in a private repo,
+copy it to the next machine:
+
+```sh
+wolfforge import ~/wolfforge.toml      # takes it over and applies it
+wolfforge bookmarks push               # bookmarks into LibreWolf (LibreWolf closed)
+```
+
+```toml
+[general]
+follow_system = true      # colours, font and art from swayforge
+theme = "type-o"          # used when not following the system
+layout = "compact"        # classic | compact | minimal | win98 | wired
+
+[toolbar]
+buttons = ["back", "forward", "reload", "urlbar", "downloads", "extensions"]
+tabs = "top"              # top | vertical | hidden
+
+[[sites.rules]]
+domain = "example.org"
+mode = "invert"           # invert | dim | theme | off
+
+[privacy]
+level = "comfort"         # comfort | librewolf | fortress
+sync = false
+
+[themes.ember]            # your saved theme
+label = "Ember"
+# [themes.ember.colors] …
+
+[[bookmarks]]
+title = "GitHub"
+url = "https://github.com/"
+folder = "Toolbar/Dev"    # Toolbar | Menu | Other + subfolders
+```
+
+## Privacy levels
+
+LibreWolf already blocks telemetry, studies, Pocket, sponsored content and trackers, and ships
+uBlock Origin. The levels decide how far it goes beyond that:
+
+| Level | What it means |
+|---|---|
+| **comfort** (default) | LibreWolf's protection, but logins, cookies, history and open tabs survive a restart; DRM works; resist-fingerprinting off (it forces light mode and UTC) – Firefox's fingerprinting protection instead |
+| **librewolf** | LibreWolf as shipped: everything cleared on exit, resist-fingerprinting on |
+| **fortress** | + WebRTC off, WebGL off, letterboxing, strict referrers, HTTPS-only – some sites break |
+
+Switches on top: **Firefox Sync** (your Firefox account: bookmarks, passwords, add-ons – the easiest
+way over from Firefox), offer to save passwords, DRM.
+
+## From Firefox
+
+```sh
+wolfforge import-firefox --passwords   # bookmarks + add-on list + saved passwords
+```
+
+Or in the app: *Import from Firefox*. Passwords are copied into the LibreWolf profile
+(`logins.json` + `key4.db`) – never into the universal file. Add-ons can't be copied (LibreWolf
+only installs signed add-ons from addons.mozilla.org), so wolfforge opens their pages in LibreWolf:
+one click each.
+
+## What it writes
+
+| Where | What |
+|---|---|
+| `<profile>/chrome/wolfforge/chrome.css` | browser UI: colours, font, layout (generated) |
+| `<profile>/chrome/wolfforge/content.css` | about: pages, new tab, website touches and rules (generated) |
+| `<profile>/chrome/userChrome.css`, `userContent.css` | **yours** – they import the generated ones first, your rules below win |
+| `<profile>/user.js` | look prefs between `wolfforge begin/end` – the rest of the file is yours |
+| `librewolf.overrides.cfg` | privacy prefs between `wolfforge begin/end` – the rest is yours |
+| `~/.local/share/wolfforge/start.html` | the start page |
+
+Delete the `wolfforge generated` line in a generated file and wolfforge leaves it alone.
+Automatic backups of the universal file and replaced files: `~/.local/share/wolfforge/backups/`.
+
+## Command line
+
+```
+wolfforge                       the app
+wolfforge apply                 write everything into LibreWolf
+wolfforge theme NAME | --list   switch theme (system = follow swayforge)
+wolfforge layout NAME           classic | compact | minimal | win98 | wired
+wolfforge bookmarks pull|push   file ⇄ LibreWolf
+wolfforge import-firefox        bookmarks, add-on list (--passwords)
+wolfforge export FILE / import FILE
+wolfforge restart               restart LibreWolf
+wolfforge status
+```
+
+## Notes
+
+- The browser-UI CSS uses Firefox's own theme variables wherever possible, so it survives updates.
+  If a LibreWolf update ever breaks a layout, switch to *classic* – it only recolours.
+- With resist-fingerprinting on (levels *librewolf*, *fortress*) every site sees "light", so the
+  dark-mode request can't work there – use per-site rules instead.
+- LibreWolf as Flatpak works too (profile under `~/.var/app/io.gitlab.librewolf-community`).
+
+## License
+
+MIT – see [LICENSE](LICENSE).

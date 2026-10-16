@@ -1,0 +1,193 @@
+/* {{ mark }} – rebuilt by `wolfforge apply`. Your own rules go into ../userChrome.css (below the @import). */
+/* theme: {{ p.label }} · layout: {{ layout }} */
+
+/* ── Colours: Firefox's own theme variables (robust across versions) ───────────── */
+:root, :root:-moz-lwtheme {
+  color-scheme: {{ "dark" if p.dark else "light" }} !important;
+  accent-color: {{ c.accent }} !important;
+
+  --wf-crust: {{ c.crust }}; --wf-mantle: {{ c.mantle }}; --wf-base: {{ c.base }};
+  --wf-surface: {{ c.surface }}; --wf-surface2: {{ c.surface2 }}; --wf-overlay: {{ c.overlay }};
+  --wf-text: {{ c.text }}; --wf-subtext: {{ c.subtext }};
+  --wf-accent: {{ c.accent }}; --wf-accent2: {{ c.accent2 }}; --wf-on-accent: {{ on_accent }};
+  --wf-red: {{ c.red }}; --wf-radius: {{ radius }}px;
+  --wf-font: "{{ font }}", monospace;
+
+  --lwt-accent-color: {{ c.mantle }} !important;
+  --lwt-text-color: {{ c.text }} !important;
+  --toolbox-bgcolor: {{ c.mantle }} !important;
+  --toolbox-bgcolor-inactive: {{ c.mantle }} !important;
+  --toolbox-textcolor: {{ c.text }} !important;
+  --toolbox-textcolor-inactive: {{ c.subtext }} !important;
+  --toolbar-bgcolor: {{ c.base }} !important;
+  --toolbar-color: {{ c.text }} !important;
+  --toolbar-field-background-color: {{ c.surface }} !important;
+  --toolbar-field-color: {{ c.text }} !important;
+  --toolbar-field-border-color: {{ c.surface2 }} !important;
+  --toolbar-field-focus-background-color: {{ c.crust }} !important;
+  --toolbar-field-focus-color: {{ c.text }} !important;
+  --toolbar-field-focus-border-color: {{ c.accent }} !important;
+  --toolbarbutton-icon-fill: {{ c.text }} !important;
+  --toolbarbutton-icon-fill-attention: {{ c.accent }} !important;
+  --toolbarbutton-hover-background: {{ rgba(c.accent, 0.18) }} !important;
+  --toolbarbutton-active-background: {{ rgba(c.accent, 0.32) }} !important;
+  --toolbarbutton-border-radius: {{ radius }}px !important;
+  --tab-border-radius: {{ radius }}px !important;
+  --tab-selected-bgcolor: {{ c.base }} !important;
+  --tab-selected-textcolor: {{ c.text }} !important;
+  --tab-hover-background-color: {{ rgba(c.text, 0.07) }} !important;
+  --tab-loading-fill: {{ c.accent }} !important;
+  --tab-attention-icon-color: {{ c.accent }} !important;
+  --tabpanel-background-color: {{ c.base }} !important;
+  --chrome-content-separator-color: {{ c.surface2 }} !important;
+  --arrowpanel-background: {{ c.mantle }} !important;
+  --arrowpanel-color: {{ c.text }} !important;
+  --arrowpanel-border-color: {{ c.surface2 }} !important;
+  --arrowpanel-border-radius: {{ radius }}px !important;
+  --panel-separator-color: {{ c.surface2 }} !important;
+  --panel-background: {{ c.mantle }} !important;
+  --panel-color: {{ c.text }} !important;
+  --panel-border-color: {{ c.surface2 }} !important;
+  --panel-border-radius: {{ radius }}px !important;
+  --urlbarView-highlight-background: {{ c.accent }} !important;
+  --urlbarView-highlight-color: {{ on_accent }} !important;
+  --urlbarView-hover-background: {{ rgba(c.accent, 0.15) }} !important;
+  --urlbarView-separator-color: {{ c.surface2 }} !important;
+  --urlbar-box-bgcolor: {{ c.surface }} !important;
+  --urlbar-box-text-color: {{ c.subtext }} !important;
+  --urlbar-box-hover-bgcolor: {{ c.surface2 }} !important;
+  --sidebar-background-color: {{ c.mantle }} !important;
+  --sidebar-text-color: {{ c.text }} !important;
+  --sidebar-border-color: {{ c.surface2 }} !important;
+  --focus-outline-color: {{ c.accent }} !important;
+  --button-background-color: {{ c.surface }} !important;
+  --button-background-color-hover: {{ c.surface2 }} !important;
+  --button-text-color: {{ c.text }} !important;
+  --button-primary-bgcolor: {{ c.accent }} !important;
+  --button-primary-color: {{ on_accent }} !important;
+  --color-accent-primary: {{ c.accent }} !important;
+  --color-accent-primary-hover: {{ mix(c.accent, c.text, 0.15) }} !important;
+  --color-accent-primary-active: {{ mix(c.accent, c.text, 0.3) }} !important;
+  --background-color-box: {{ c.mantle }} !important;
+  --background-color-canvas: {{ c.base }} !important;
+  --text-color: {{ c.text }} !important;
+  --text-color-deemphasized: {{ c.subtext }} !important;
+  --border-color: {{ c.surface2 }} !important;
+  --border-radius-small: {{ [radius, 4] | min }}px !important;
+  --border-radius-medium: {{ radius }}px !important;
+  --border-radius-large: {{ radius }}px !important;
+  --border-radius-circle: {{ "0" if radius == 0 else "9999px" }} !important;
+}
+
+/* ── One font everywhere ───────────────────────────────────────────────────────── */
+#navigator-toolbox, #urlbar, .urlbarView, menupopup, menu, menuitem, panel, panelview, tooltip,
+#sidebar-box, #sidebar-main, .tab-label, #statuspanel-label, findbar {
+  font-family: var(--wf-font) !important;
+}
+#navigator-toolbox, .tab-label, #urlbar-input { font-size: {{ font_size }}px !important; }
+
+/* ── Tabs ──────────────────────────────────────────────────────────────────────── */
+.tabbrowser-tab[selected] .tab-background,
+.tabbrowser-tab[multiselected] .tab-background {
+  background: var(--tab-selected-bgcolor) !important;
+  box-shadow: inset 0 -2px 0 {{ c.accent }} !important;
+}
+.tabbrowser-tab:not([selected]) .tab-label { color: {{ c.subtext }} !important; }
+.tabbrowser-tab:not([pinned]) { max-width: {{ t.tab_width }}px !important; }
+{% if not t.close_buttons %}
+.tabbrowser-tab:not([pinned]):not(:hover) .tab-close-button { display: none !important; }
+{% endif %}
+{% if t.tabs == "hidden" %}
+#TabsToolbar:not([customizing]) { visibility: collapse !important; }
+{% endif %}
+{% if t.title_banner and t.tabs != "hidden" %}
+#TabsToolbar::after {
+  content: "{{ tag }}";
+  align-self: center; white-space: pre; padding: 0 10px;
+  font: bold 11px var(--wf-font); color: {{ c.accent }}; opacity: .85;
+}
+{% endif %}
+
+/* ── Address bar & menus ───────────────────────────────────────────────────────── */
+#urlbar-background { border-radius: {{ radius }}px !important; }
+#urlbar[focused] #urlbar-background { outline: 1px solid {{ c.accent }} !important; outline-offset: -1px; }
+menupopup, panel { --panel-padding: 4px; }
+menupopup > menuitem[_moz-menuactive], menupopup > menu[_moz-menuactive] {
+  background-color: {{ rgba(c.accent, 0.22) }} !important; color: {{ c.text }} !important;
+}
+#statuspanel-label { background: {{ c.mantle }} !important; color: {{ c.subtext }} !important;
+  border-color: {{ c.surface2 }} !important; border-radius: {{ radius }}px !important; }
+findbar { background: {{ c.mantle }} !important; border-top: 1px solid {{ c.surface2 }} !important; }
+
+/* ── Layout: {{ layout }} ──────────────────────────────────────────────────────── */
+{% if layout == "compact" %}
+/* address bar and tabs on one row */
+:root:not([customizing]) #navigator-toolbox {
+  display: flex !important; flex-direction: row !important; flex-wrap: wrap !important;
+}
+:root:not([customizing]) #titlebar { display: contents !important; }
+:root:not([customizing]) #toolbar-menubar { order: 0; flex: 1 1 100% !important; }
+:root:not([customizing]) #nav-bar { order: 1; flex: 0 0 auto !important; width: 42vw !important;
+  min-width: 380px !important; border-top: none !important; box-shadow: none !important; }
+:root:not([customizing]) #TabsToolbar { order: 2; flex: 1 1 0 !important; min-width: 0 !important; }
+:root:not([customizing]) #PersonalToolbar,
+:root:not([customizing]) #notifications-toolbar { order: 3; flex: 1 1 100% !important; }
+{% elif layout == "minimal" %}
+/* toolbar slides in only when you need it: hover the top edge or press Ctrl+L */
+:root:not([customizing]) #nav-bar {
+  max-height: 0 !important; min-height: 0 !important; opacity: 0;
+  overflow: hidden; transition: max-height .12s ease, opacity .12s ease;
+}
+:root:not([customizing]) #navigator-toolbox:hover #nav-bar,
+:root:not([customizing]) #navigator-toolbox:focus-within #nav-bar,
+:root:not([customizing]) #nav-bar:has(#urlbar[open]) {
+  max-height: 64px !important; opacity: 1; overflow: visible;
+}
+{% elif layout == "win98" %}
+/* Classic 98: bevelled buttons, sunken address bar, title-bar gradient on the active tab */
+#nav-bar, #TabsToolbar, #PersonalToolbar { background-color: {{ bv.face }} !important; }
+#nav-bar { border-top: 2px solid {{ bv.hi }} !important; border-bottom: 2px solid {{ bv.lo }} !important; }
+toolbarbutton .toolbarbutton-icon, toolbarbutton .toolbarbutton-badge-stack, toolbarbutton .toolbarbutton-text {
+  border: 2px solid !important; border-color: {{ bv.hi }} {{ bv.lo }} {{ bv.lo }} {{ bv.hi }} !important;
+  border-radius: 0 !important; background-color: {{ bv.face }} !important;
+}
+toolbarbutton:active .toolbarbutton-icon, toolbarbutton[open] .toolbarbutton-icon {
+  border-color: {{ bv.lo }} {{ bv.hi }} {{ bv.hi }} {{ bv.lo }} !important; background-color: {{ bv.pressed }} !important;
+}
+#urlbar-background { border: 2px solid !important; border-color: {{ bv.lo }} {{ bv.hi }} {{ bv.hi }} {{ bv.lo }} !important;
+  border-radius: 0 !important; background: {{ c.crust }} !important; }
+.tabbrowser-tab .tab-background {
+  border: 2px solid !important; border-bottom: none !important; border-radius: 0 !important;
+  border-color: {{ bv.hi }} {{ bv.lo }} transparent {{ bv.hi }} !important; background-color: {{ bv.face }} !important;
+}
+.tabbrowser-tab[selected] .tab-background {
+  background-image: linear-gradient(to right, {{ bv.title }}, {{ bv.title2 }}) !important; box-shadow: none !important;
+}
+.tabbrowser-tab[selected] .tab-label { color: {{ on_accent }} !important; font-weight: bold; }
+menupopup, panel { --panel-border-radius: 0 !important; }
+menupopup::part(content), .panel-arrowcontent {
+  border: 2px solid !important; border-color: {{ bv.hi }} {{ bv.lo }} {{ bv.lo }} {{ bv.hi }} !important;
+}
+{% elif layout == "wired" %}
+/* Wired: text-terminal look – brackets, prompt, scanlines, hard edges */
+#navigator-toolbox {
+  background-image: repeating-linear-gradient(to bottom, transparent 0 2px, {{ rgba(c.accent, 0.05) }} 2px 3px) !important;
+  border-bottom: 1px solid {{ c.accent }} !important;
+}
+.tab-label { text-transform: lowercase; }
+.tabbrowser-tab .tab-label::before { content: "["; color: {{ c.overlay }}; }
+.tabbrowser-tab .tab-label::after { content: "]"; color: {{ c.overlay }}; }
+.tabbrowser-tab[selected] .tab-label::before, .tabbrowser-tab[selected] .tab-label::after { color: {{ c.accent }}; }
+.tabbrowser-tab[selected] .tab-background { box-shadow: inset 0 -1px 0 {{ c.accent }}, inset 0 1px 0 {{ c.accent }} !important; }
+#urlbar-input-container::before {
+  content: ">"; align-self: center; padding: 0 2px 0 8px; font: bold 13px var(--wf-font); color: {{ c.accent }};
+}
+#urlbar-background { background: {{ c.crust }} !important; border: 1px solid {{ c.surface2 }} !important; }
+#identity-icon-box, #tracking-protection-icon-container { filter: grayscale(1); }
+{% endif %}
+{% if t.tabs == "vertical" %}
+
+/* Vertical tabs (Firefox's own sidebar tabs) */
+#sidebar-main { border-inline-end: 1px solid {{ c.surface2 }} !important; }
+#vertical-tabs .tabbrowser-tab[selected] .tab-background { box-shadow: inset 2px 0 0 {{ c.accent }} !important; }
+{% endif %}
