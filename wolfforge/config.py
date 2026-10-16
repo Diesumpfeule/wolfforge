@@ -77,7 +77,8 @@ DEFAULTS: dict = {
         "buttons": ["back", "forward", "reload", "urlbar", "downloads", "extensions"],
         "bookmarks_bar": "newtab",   # always | newtab | never
         "tabs": "top",               # top | vertical | hidden (keyboard only)
-        "tab_width": 180,
+        "tab_width": 180,            # max px per tab · 0 = tabs stretch to fill the whole bar
+        "instant_resize": True,      # tabs re-flow right after closing one (not when the mouse leaves)
         "close_buttons": False,
         "title_banner": True,        # tiny ASCII tag in the empty tab-strip area
     },

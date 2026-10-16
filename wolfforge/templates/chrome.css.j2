@@ -93,7 +93,15 @@
   box-shadow: inset 0 -2px 0 {{ c.accent }} !important;
 }
 .tabbrowser-tab:not([selected]) .tab-label { color: {{ c.subtext }} !important; }
-.tabbrowser-tab:not([pinned]) { max-width: {{ t.tab_width }}px !important; }
+/* Width only for tabs that are fully open ([fadein]) – opening/closing tabs keep Firefox's
+   own grow/shrink animation, so closed tabs really disappear and the + follows the last tab. */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  max-width: {{ (t.tab_width ~ "px") if t.tab_width > 0 else "100vw" }} !important;
+}
+{% if t.instant_resize %}
+/* Resize right after closing a tab (Firefox normally freezes the widths until the mouse leaves) */
+#tabbrowser-tabs .closing-tabs-spacer { display: none !important; }
+{% endif %}
 {% if not t.close_buttons %}
 .tabbrowser-tab:not([pinned]):not(:hover) .tab-close-button { display: none !important; }
 {% endif %}
