@@ -31,6 +31,9 @@ if [ "$HERE" != "$APP" ]; then
   cp -r "$HERE/wolfforge" "$APP/"
   cp "$HERE/README.md" "$HERE/install.sh" "$APP/" 2>/dev/null || true
 fi
+printf '{"commit": "%s", "date": "%s", "source": "%s"}\n' \
+  "$(git -C "$HERE" rev-parse HEAD 2>/dev/null || true)" \
+  "$(git -C "$HERE" log -1 --format=%cs 2>/dev/null || true)" "$HERE" > "$APP/build.json"
 cat > "$BIN" <<EOF
 #!/bin/sh
 export PYTHONPATH="$APP\${PYTHONPATH:+:\$PYTHONPATH}"
