@@ -117,8 +117,72 @@
 {% endif %}
 
 /* ── Address bar & menus ───────────────────────────────────────────────────────── */
-#urlbar-background { border-radius: {{ radius }}px !important; }
-#urlbar[focused] #urlbar-background { outline: 1px solid {{ c.accent }} !important; outline-offset: -1px; }
+/* Address bar + search bar + suggestions: colours set ON the elements, for every state
+   (normal, focused, open with suggestions) – their own variables otherwise turn them grey. */
+#urlbar, #searchbar, #urlbar-container, #search-container, .urlbarView, #PopupSearchAutoComplete,
+.search-one-offs, #urlbar .urlbarView {
+  --toolbar-field-background-color: {{ c.surface }} !important;
+  --toolbar-field-color: {{ c.text }} !important;
+  --toolbar-field-border-color: {{ c.surface2 }} !important;
+  --toolbar-field-focus-background-color: {{ c.crust }} !important;
+  --toolbar-field-focus-color: {{ c.text }} !important;
+  --toolbar-field-focus-border-color: {{ c.accent }} !important;
+  --urlbar-box-bgcolor: {{ c.surface }} !important;
+  --urlbar-box-focus-bgcolor: {{ c.surface2 }} !important;
+  --urlbar-box-hover-bgcolor: {{ c.surface2 }} !important;
+  --urlbar-box-active-bgcolor: {{ c.surface2 }} !important;
+  --urlbar-box-text-color: {{ c.subtext }} !important;
+  --urlbar-box-hover-text-color: {{ c.text }} !important;
+  --urlbar-popup-url-color: {{ c.accent }} !important;
+  --urlbar-popup-action-color: {{ c.subtext }} !important;
+  --urlbarView-highlight-background: {{ c.accent }} !important;
+  --urlbarView-highlight-color: {{ on_accent }} !important;
+  --urlbarView-hover-background: {{ rgba(c.accent, 0.15) }} !important;
+  --urlbarView-separator-color: {{ c.surface2 }} !important;
+  --urlbarView-action-color: {{ c.subtext }} !important;
+  --urlbarView-url-color: {{ c.accent }} !important;
+  --urlbarView-secondary-text-color: {{ c.subtext }} !important;
+  --autocomplete-popup-background: {{ c.crust }} !important;
+  --autocomplete-popup-color: {{ c.text }} !important;
+  --autocomplete-popup-highlight-background: {{ c.accent }} !important;
+  --autocomplete-popup-highlight-color: {{ on_accent }} !important;
+  --input-bgcolor: {{ c.crust }} !important;
+  --input-color: {{ c.text }} !important;
+  color-scheme: {{ "dark" if p.dark else "light" }} !important;
+}
+#urlbar-background, #searchbar {
+  background-color: {{ c.surface }} !important;
+  border: 1px solid {{ c.surface2 }} !important;
+  border-radius: {{ radius }}px !important;
+  box-shadow: none !important;
+}
+#urlbar:is([focused], [open], [breakout-extend]) > #urlbar-background,
+#urlbar[focused] #urlbar-background, #urlbar[open] #urlbar-background,
+#searchbar:focus-within {
+  background-color: {{ c.crust }} !important;
+  border-color: {{ c.accent }} !important;
+  outline: 1px solid {{ c.accent }} !important; outline-offset: -1px;
+}
+#urlbar-input, #urlbar .urlbar-input, .searchbar-textbox, #searchbar input {
+  appearance: none !important; background-color: transparent !important; color: {{ c.text }} !important;
+}
+#urlbar-input::placeholder, .searchbar-textbox::placeholder, #searchbar input::placeholder {
+  color: {{ c.overlay }} !important; opacity: 1 !important;
+}
+#urlbar-input::selection, .searchbar-textbox::selection { background-color: {{ c.accent }} !important; color: {{ on_accent }} !important; }
+.urlbarView, #PopupSearchAutoComplete, .search-one-offs, .urlbarView-body-outer, .urlbarView-body-inner {
+  background-color: {{ c.crust }} !important; color: {{ c.text }} !important;
+}
+.urlbarView-row[selected] > .urlbarView-row-inner, .urlbarView-row:hover > .urlbarView-row-inner,
+#PopupSearchAutoComplete .autocomplete-richlistitem[selected] {
+  background-color: {{ rgba(c.accent, 0.25) }} !important; color: {{ c.text }} !important;
+}
+.urlbarView-url, .urlbarView-row[type="url"] .urlbarView-title { color: {{ c.accent }} !important; }
+.urlbarView-action, .urlbarView-secondary { color: {{ c.subtext }} !important; }
+.search-one-offs, .urlbarView .search-one-offs { border-top: 1px solid {{ c.surface2 }} !important; }
+.searchbar-engine-one-off-item:hover, .searchbar-engine-one-off-item[selected] {
+  background-color: {{ rgba(c.accent, 0.25) }} !important;
+}
 
 /* ── Every popup, menu and panel: colours set ON the element ─────────────────────
    Firefox gives panels and menus their own colour variables, which would win over
