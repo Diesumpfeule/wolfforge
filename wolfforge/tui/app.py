@@ -150,6 +150,7 @@ def field(cfg: dict, path: str, label: str, kind: str = "str", options=None, hel
 
 
 class WolfforgeApp(App):
+    ENABLE_COMMAND_PALETTE = False      # Textual's Ctrl+P command search – not useful here
     TITLE = "wolfforge"
     SUB_TITLE = "LibreWolf overhaul"
     CSS = CSS

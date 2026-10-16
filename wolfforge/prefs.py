@@ -99,6 +99,8 @@ def privacy_prefs(cfg: dict) -> dict:
             "privacy.clearOnShutdown_v2.cookiesAndStorage": not keep,
             "privacy.clearOnShutdown_v2.historyFormDataAndDownloads": not keep,
             "privacy.clearOnShutdown_v2.browsingHistoryAndDownloads": not keep,
+            "privacy.clearOnShutdown.sessions": not keep,
+            "privacy.clearOnShutdown_v2.formdata": not keep,
         })
     if keep:
         p.update({

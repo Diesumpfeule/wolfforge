@@ -190,8 +190,10 @@ def apply(cfg: dict | None = None, dry: bool = False, push_bookmarks: bool = Fal
 
     userjs = profile / "user.js"
     before = userjs.read_text() if userjs.exists() else ""
-    new = prefs.write_block(userjs, prefs.look_prefs(cfg, themes.resolved(cfg), start_url),
-                            "user_pref", dry)
+    # privacy prefs go into user.js as well: user.js always wins over LibreWolf's defaults,
+    # whichever folder this LibreWolf version reads librewolf.overrides.cfg from
+    new = prefs.write_block(userjs, prefs.look_prefs(cfg, themes.resolved(cfg), start_url)
+                            | prefs.privacy_prefs(cfg), "user_pref", dry)
     if new != before:
         res.written.append(str(userjs))
 

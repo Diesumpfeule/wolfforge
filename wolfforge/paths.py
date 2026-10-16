@@ -93,6 +93,8 @@ def overrides_file() -> Path:
     root = librewolf_root()
     if root is None:
         root = next((r for r in LIBREWOLF_ROOTS if r.is_dir()), LIBREWOLF_ROOTS[1])
+    if root == XDG_CONFIG / "librewolf/librewolf":   # XDG layout reads ~/.config/librewolf/…cfg
+        return root.parent / "librewolf.overrides.cfg"
     return root / "librewolf.overrides.cfg"
 
 
