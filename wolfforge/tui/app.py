@@ -50,7 +50,7 @@ Screen { layout: vertical; }
 .frow Switch { margin-right: 30; }
 .hint { color: $text-muted; padding-bottom: 1; }
 .warn { color: $warning; padding-bottom: 1; }
-.btnrow { height: auto; margin: 1 0; }
+.btnrow { height: auto; margin: 1 0; align: left middle; }
 .btnrow Button { margin-right: 2; }
 .btnrow Input { width: 1fr; margin-right: 2; }
 .btnrow Select { width: 36; margin-right: 2; }
@@ -67,6 +67,16 @@ Screen { layout: vertical; }
 #hero_banner, #hero_art { width: auto; }
 #hero_art { margin-left: 4; }
 #statusbar { height: 1; background: $panel; padding: 0 2; color: $text-muted; }
+Button { height: 1; min-width: 6; border: none; padding: 0 2; background: $panel; color: $text; text-style: bold; }
+Button:hover { background: $accent 35%; }
+Button:focus { background: $accent 55%; }
+Button.-primary, Button.-success { background: $accent; color: $background; }
+Button.-warning { background: $warning 75%; color: $background; }
+App.-ui-win98 Button { height: 3; border: outer $panel-lighten-2; background: $panel; color: $text; }
+App.-ui-win98 Button.-active, App.-ui-win98 Button:focus { border: inner $panel-lighten-2; }
+App.-ui-win98 Button.-primary, App.-ui-win98 Button.-success { background: $accent; color: $background; }
+App.-ui-wired Button { background: transparent; color: $accent; padding: 0 1; }
+App.-ui-wired Button:hover, App.-ui-wired Button:focus { background: $accent; color: $background; }
 """
 
 
@@ -144,6 +154,7 @@ class WolfforgeApp(App):
     SUB_TITLE = "LibreWolf overhaul"
     CSS = CSS
     BINDINGS = [Binding("ctrl+s", "apply", "Save & apply", priority=True),
+                Binding("ctrl+l", "redraw", "Redraw", priority=True),
                 Binding("ctrl+r", "restart", "Restart LibreWolf"),
                 Binding("ctrl+q", "quit", "Quit", priority=True)]
 
@@ -185,6 +196,12 @@ class WolfforgeApp(App):
         th = textual_theme(themes.active(self.cfg))
         self.register_theme(th)
         self.theme = th.name
+        for x in ("win98", "wired"):
+            self.set_class(self.cfg["general"]["layout"] == x, f"-ui-{x}")
+
+    def action_redraw(self) -> None:
+        self.refresh(repaint=True, layout=True)
+        self.screen.refresh(repaint=True, layout=True)
 
     def status(self, extra: str = "") -> None:
         prof = paths.librewolf_profile(self.cfg["general"]["profile"])
@@ -497,6 +514,7 @@ class WolfforgeApp(App):
     @on(ListView.Selected, "#layoutlist")
     def pick_layout(self, ev: ListView.Selected) -> None:
         self.cfg["general"]["layout"] = ev.item.name
+        self.use_palette()
         self.changed(f"layout: {ev.item.name}")
 
     def refresh_list(self, sel: str, items: list[ListItem], index: int | None = None) -> None:

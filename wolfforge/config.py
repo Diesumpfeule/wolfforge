@@ -48,7 +48,7 @@ PRIVACY_LEVELS = {
 SITE_PACKS = {
     "github": "GitHub – recolours GitHub's own colour variables (Primer)",
     "wikipedia": "Wikipedia – recolours Wikipedia's design tokens (Codex)",
-    "youtube": "YouTube – recolours YouTube's colour variables",
+    "youtube": "YouTube – backgrounds, text, header, search, menus, sidebar, progress bar",
 }
 
 SITE_MODES = {
