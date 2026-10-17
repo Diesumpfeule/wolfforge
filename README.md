@@ -193,6 +193,11 @@ run them – use at your own risk.
 
 This is a personal project: pull requests and outside code are not accepted. Feel free to fork it.
 
+## Crashes
+
+If wolfforge crashes, it writes a report to `~/.local/share/swayforge/crashes/` and sends a
+notification. The app's terminal stays open with the error until you press Enter.
+
 ## License
 
 MIT – see [LICENSE](LICENSE).

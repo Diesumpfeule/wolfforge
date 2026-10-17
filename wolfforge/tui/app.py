@@ -817,7 +817,8 @@ class WolfforgeApp(App):
 
 
 def run(page: str = "look") -> None:
+    from ..crash import run_app
     while True:
-        result = WolfforgeApp(page).run()
+        result = run_app("wolfforge", WolfforgeApp(page))
         if result != "reload":
             break
