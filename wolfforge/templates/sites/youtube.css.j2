@@ -1,0 +1,69 @@
+  :root, :root[dark], :root:not([dark]), html[darker-dark-theme], [dark], [system-icons],
+  ytd-app, ytd-masthead, ytd-popup-container, tp-yt-iron-dropdown, ytd-multi-page-menu-renderer {
+    --yt-spec-base-background: {{ c.base }} !important;
+    --yt-spec-raised-background: {{ c.mantle }} !important;
+    --yt-spec-menu-background: {{ c.mantle }} !important;
+    --yt-spec-general-background-a: {{ c.base }} !important;
+    --yt-spec-general-background-b: {{ c.mantle }} !important;
+    --yt-spec-general-background-c: {{ c.crust }} !important;
+    --yt-spec-brand-background-solid: {{ c.mantle }} !important;
+    --yt-spec-brand-background-primary: {{ c.mantle }} !important;
+    --yt-spec-snackbar-background: {{ c.surface }} !important;
+    --yt-spec-badge-chip-background: {{ c.surface }} !important;
+    --yt-spec-additive-background: {{ rgba(c.text, 0.08) }} !important;
+    --yt-spec-10-percent-layer: {{ c.surface2 }} !important;
+    --yt-spec-outline: {{ c.surface2 }} !important;
+    --yt-spec-text-primary: {{ c.text }} !important;
+    --yt-spec-text-secondary: {{ c.subtext }} !important;
+    --yt-spec-text-disabled: {{ c.overlay }} !important;
+    --yt-spec-icon-active-other: {{ c.text }} !important;
+    --yt-spec-icon-inactive: {{ c.subtext }} !important;
+    --yt-spec-call-to-action: {{ c.accent }} !important;
+    --yt-spec-themed-blue: {{ c.accent }} !important;
+    --yt-spec-static-brand-red: {{ c.accent }} !important;
+    --yt-spec-frosted-glass-desktop: {{ rgba(c.mantle, 0.92) }} !important;
+    --yt-frosted-glass-desktop: {{ rgba(c.mantle, 0.92) }} !important;
+    --yt-sys-color-baseline--base-background: {{ c.base }} !important;
+    --yt-sys-color-baseline--raised-background: {{ c.mantle }} !important;
+    --yt-sys-color-baseline--menu-background: {{ c.mantle }} !important;
+    --yt-sys-color-baseline--additive-background: {{ rgba(c.text, 0.08) }} !important;
+    --yt-sys-color-baseline--text-primary: {{ c.text }} !important;
+    --yt-sys-color-baseline--text-secondary: {{ c.subtext }} !important;
+    --yt-sys-color-baseline--call-to-action: {{ c.accent }} !important;
+    --yt-sys-color-baseline--outline: {{ c.surface2 }} !important;
+    --yt-endpoint-color: {{ c.text }} !important;
+    --ytd-searchbox-background: {{ c.crust }} !important;
+    --ytd-searchbox-text-color: {{ c.text }} !important;
+    --ytd-searchbox-border-color: {{ c.surface2 }} !important;
+    --ytd-searchbox-legacy-button-color: {{ c.surface }} !important;
+    --ytd-searchbox-legacy-button-icon-color: {{ c.text }} !important;
+    --paper-tooltip-background: {{ c.surface }} !important;
+    --paper-tooltip-text-color: {{ c.text }} !important;
+    --iron-icon-fill-color: {{ c.text }} !important;
+    --primary-text-color: {{ c.text }} !important;
+    --primary-background-color: {{ c.base }} !important;
+    --primary-color: {{ c.accent }} !important;
+    --accent-color: {{ c.accent }} !important;
+    --divider-color: {{ c.surface2 }} !important;
+  }
+  html, body, ytd-app, ytd-app[is-shorts-page], ytd-browse, ytd-watch-flexy, ytd-search,
+  #page-manager, #columns { background-color: {{ c.base }} !important; }
+  #background.ytd-masthead, #frosted-glass, #container.ytd-masthead { background: {{ c.mantle }} !important; }
+  .ytSearchboxComponentInputBox, .ytSearchboxComponentSuggestionsContainer, ytd-searchbox #container,
+  .sbdd_b, .sbsb_a {
+    background-color: {{ c.crust }} !important; color: {{ c.text }} !important;
+    border-color: {{ c.surface2 }} !important;
+  }
+  .ytSearchboxComponentInput, ytd-searchbox input { color: {{ c.text }} !important; }
+  ytd-menu-popup-renderer, .ytContextualSheetLayoutHost, .ytSpecDialogLayoutHost,
+  tp-yt-paper-dialog, ytd-multi-page-menu-renderer {
+    background-color: {{ c.mantle }} !important; color: {{ c.text }} !important;
+  }
+  #guide-content, ytd-mini-guide-renderer, tp-yt-app-drawer #contentContainer {
+    background-color: {{ c.mantle }} !important;
+  }
+  yt-chip-cloud-chip-renderer[selected] #chip-container, .ytChipShapeActive {
+    background-color: {{ c.accent }} !important; color: {{ on_accent }} !important;
+  }
+  .ytp-play-progress, .ytp-swatch-background-color { background: {{ c.accent }} !important; }
+  .html5-video-player { background-color: #000 !important; }

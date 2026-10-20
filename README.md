@@ -23,6 +23,7 @@ your system theme automatically; on its own it brings 15 themes and lets you mak
 - **Websites** – safe touches that can't break anything (dark-mode request, scrollbars, selection,
   caret, focus ring), **DuckDuckGo in your colours** (its official appearance settings), experimental
   theme packs for GitHub, Wikipedia and YouTube, + opt-in per-site rules (invert / dim / theme).
+  Applied through the **Stylus** add-on (see below) or, if you prefer, LibreWolf's own userContent.css.
 - **Start page** – shaded, animated ASCII banner and art (a glint sweeps across, sparks twinkle), clock, search, your bookmarks as tiles; type anywhere to
   search, 1–9 open links. The new-tab page gets your ASCII art too.
 - **Privacy levels** – *comfort* / *librewolf* / *fortress*, plus switches for Firefox Sync,
@@ -105,6 +106,25 @@ address bar, add it once as a search engine – the app's *Websites → Copy sea
 link, then LibreWolf → *Settings → Search → Search Shortcuts → Add*, paste, and pick it as default.
 (Search engines can only be set by you inside the browser – on purpose, so nothing can hijack them.)
 
+## Websites through Stylus
+
+By default the website themes (safe touches, theme packs, per-site rules) are not written into
+userContent.css but into **one import file for the [Stylus](https://addons.mozilla.org/firefox/addon/styl-us/)
+add-on**: `~/.local/share/wolfforge/stylus-import.json`. `wolfforge apply` keeps it up to date, and the
+app's *Websites* page has a *Write Stylus import file* button (CLI: `wolfforge stylus [--to ~/Downloads]`).
+
+1. Install Stylus in LibreWolf (once).
+2. Stylus → *Manage* → *Import* → pick the file.
+3. After you change the theme or a rule: write the file again and import it again. The styles have
+   fixed names (`wolfforge: GitHub`, …) and ids, so importing **updates** them – no copies.
+
+Stylus has no interface for other programs, so this import step stays manual – the theme change
+itself (also via swayforge) is applied to the file automatically, only the import is yours.
+Styles you removed in wolfforge (a rule, a pack) stay in Stylus until you delete them there.
+Browser pages (`about:…`) and the new tab can't be styled by Stylus and keep using userContent.css.
+
+Don't want an add-on? *Websites → Apply website themes with → userContent.css* does it all by itself.
+
 ## Privacy levels
 
 LibreWolf already blocks telemetry, studies, Pocket, sponsored content and trackers, and ships
@@ -135,11 +155,12 @@ one click each.
 | Where | What |
 |---|---|
 | `<profile>/chrome/wolfforge/chrome.css` | browser UI: colours, font, layout (generated) |
-| `<profile>/chrome/wolfforge/content.css` | about: pages, new tab, website touches and rules (generated) |
+| `<profile>/chrome/wolfforge/content.css` | about: pages, new tab (generated); also website themes if the engine is *userContent.css* |
 | `<profile>/chrome/userChrome.css`, `userContent.css` | **yours** – they import the generated ones first, your rules below win |
 | `<profile>/user.js` | look prefs between `wolfforge begin/end` – the rest of the file is yours |
 | `librewolf.overrides.cfg` | privacy prefs between `wolfforge begin/end` – the rest is yours |
 | `~/.local/share/wolfforge/start.html` | the start page |
+| `~/.local/share/wolfforge/stylus-import.json` | website themes for the Stylus add-on (generated) |
 
 Delete the `wolfforge generated` line in a generated file and wolfforge leaves it alone.
 Automatic backups of the universal file and replaced files: `~/.local/share/wolfforge/backups/`.
@@ -154,6 +175,7 @@ wolfforge layout NAME           classic | compact | minimal | win98 | wired
 wolfforge bookmarks pull|push   file ⇄ LibreWolf
 wolfforge import-firefox        bookmarks, add-on list (--passwords)
 wolfforge export FILE / import FILE
+wolfforge stylus [--to DIR]     write the Stylus import file (website themes)
 wolfforge restart               restart LibreWolf
 wolfforge status
 ```

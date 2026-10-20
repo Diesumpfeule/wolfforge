@@ -352,6 +352,16 @@ class WolfforgeApp(App):
         modes = [(v, k) for k, v in config.SITE_MODES.items()]
         return self.page(
             "sites",
+            section("How websites get your theme"),
+            Static("Website themes (safe touches, theme packs, per-site rules) can be applied by the Stylus "
+                   "add-on or by LibreWolf's own userContent.css. With Stylus, wolfforge writes one import "
+                   "file: Stylus → Manage → Import. Importing again after a theme change updates the styles. "
+                   "Browser pages (about:…) and the new tab always use userContent.css.", classes="hint"),
+            field(cfg, "sites.engine", "Apply website themes with", "choice",
+                  [(v, k) for k, v in generate.ENGINES.items()]),
+            Horizontal(Button("Write Stylus import file", id="stylus_write", variant="primary"),
+                       Button("Get the Stylus add-on", id="stylus_get"), classes="btnrow"),
+            section("Safe touches and dark mode"),
             Static("Safe touches never break a page: a site's own styles always win.", classes="hint"),
             field(cfg, "sites.dark_request", "Ask websites for their dark version", "bool"),
             *warn,
@@ -653,6 +663,13 @@ class WolfforgeApp(App):
                         + "LibreWolf → Settings → Search → Search Shortcuts → Add → paste. "
                         "Name it e.g. 'DuckDuckGo (themed)', keyword @d, then choose it as default.", timeout=12)
             self.copy_to_clipboard(url)
+        elif bid == "stylus_write":
+            f, n = generate.write_stylus(self.cfg)
+            self.notify(f"{n} styles written to {str(f).replace(str(paths.HOME), '~')} – in Stylus: "
+                        "Manage → Import. Importing again updates the same styles.", timeout=14)
+        elif bid == "stylus_get":
+            if not self.open_in_browser("https://addons.mozilla.org/firefox/addon/styl-us/"):
+                self.notify("LibreWolf not found", severity="error")
         elif bid == "ddg_settings":
             if not self.open_in_browser("about:preferences#search"):
                 self.notify("LibreWolf not found", severity="error")

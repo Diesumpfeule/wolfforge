@@ -1,0 +1,11 @@
+{% if r.mode == "invert" %}
+  html { filter: invert(0.92) hue-rotate(180deg) !important; background-color: #fff !important; }
+  img, video, picture, canvas, iframe, embed, object, svg image,
+  [style*="background-image"] { filter: invert(1) hue-rotate(180deg) !important; }
+{% elif r.mode == "dim" %}
+  html { filter: brightness(0.82) sepia(0.18) !important; }
+{% elif r.mode == "theme" %}
+  html, body { background-color: {{ c.base }} !important; color: {{ c.text }} !important; }
+  a, a:visited { color: {{ c.accent }} !important; }
+  ::selection { background-color: {{ c.accent }} !important; color: {{ on_accent }} !important; }
+{% endif %}

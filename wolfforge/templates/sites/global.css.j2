@@ -1,0 +1,12 @@
+{% if s.scrollbars %}
+:root { scrollbar-color: {{ mix(c.accent, c.base, 0.35) }} transparent; }
+{% endif %}
+{% if s.selection %}
+::selection { background-color: {{ c.accent }}; color: {{ on_accent }}; }
+{% endif %}
+{% if s.caret %}
+input, textarea, [contenteditable] { caret-color: {{ c.accent }}; }
+{% endif %}
+{% if s.focus_ring %}
+:focus-visible { outline-color: {{ c.accent }}; }
+{% endif %}

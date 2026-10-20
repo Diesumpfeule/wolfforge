@@ -84,6 +84,7 @@ DEFAULTS: dict = {
         "title_banner": True,        # tiny ASCII tag in the empty tab-strip area
     },
     "sites": {
+        "engine": "stylus",          # stylus (import file for the Stylus add-on) | usercss (built in, no add-on)
         "dark_request": True,        # ask websites for their dark version
         "scrollbars": True,
         "selection": True,

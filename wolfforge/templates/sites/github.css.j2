@@ -1,0 +1,12 @@
+  :root, [data-color-mode], [data-color-mode] * {
+    --bgColor-default: {{ c.base }} !important; --bgColor-muted: {{ c.mantle }} !important;
+    --bgColor-inset: {{ c.crust }} !important; --bgColor-emphasis: {{ c.surface2 }} !important;
+    --bgColor-accent-muted: {{ rgba(c.accent, 0.15) }} !important; --bgColor-accent-emphasis: {{ c.accent }} !important;
+    --fgColor-default: {{ c.text }} !important; --fgColor-muted: {{ c.subtext }} !important;
+    --fgColor-accent: {{ c.accent }} !important; --fgColor-onEmphasis: {{ on_accent }} !important;
+    --borderColor-default: {{ c.surface2 }} !important; --borderColor-muted: {{ c.surface }} !important;
+    --borderColor-accent-emphasis: {{ c.accent }} !important;
+    --button-default-bgColor-rest: {{ c.surface }} !important; --button-default-bgColor-hover: {{ c.surface2 }} !important;
+    --button-default-fgColor-rest: {{ c.text }} !important;
+    --header-bgColor: {{ c.mantle }} !important; --overlay-bgColor: {{ c.mantle }} !important;
+  }

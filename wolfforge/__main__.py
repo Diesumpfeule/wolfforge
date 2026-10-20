@@ -46,6 +46,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("file")
     p = sub.add_parser("import", help="use another universal file")
     p.add_argument("file")
+    p = sub.add_parser("stylus", help="write the Stylus import file (website themes) and show where it is")
+    p.add_argument("--to", metavar="DIR", help="also copy it into DIR (e.g. ~/Downloads)")
     sub.add_parser("restart", help="restart LibreWolf")
     sub.add_parser("status", help="what wolfforge sees")
     a = ap.parse_args(argv)
@@ -132,6 +134,20 @@ def main(argv: list[str] | None = None) -> int:
         config.save(new)
         print("Imported. Applying …")
         return _print_result(generate.apply(new), False)
+    if a.cmd == "stylus":
+        f, n = generate.write_stylus(cfg)
+        print(f"{n} styles written: {f}")
+        if a.to:
+            dst = Path(a.to).expanduser()
+            dst.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(f, dst / f.name)
+            print(f"copied to {dst / f.name}")
+        print("Stylus add-on → Manage → Import → pick the file. Import again after a theme change: "
+              "the same styles are updated, not duplicated.")
+        if cfg["sites"].get("engine", "stylus") != "stylus":
+            print("· Note: sites.engine is 'usercss' – websites are themed by userContent.css, "
+                  "so these styles would apply twice. Switch to 'stylus' in the Websites page first.")
+        return 0
     if a.cmd == "restart":
         prof = paths.librewolf_profile(cfg["general"]["profile"])
         subprocess.run(["pkill", "-TERM", "-x", "librewolf"], check=False)
@@ -152,6 +168,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Firefox         {paths.firefox_profile() or 'not found'}")
         print(f"theme           {r['palette'].label}  ({r['palette'].source})")
         print(f"layout          {cfg['general']['layout']}  · tabs {cfg['toolbar']['tabs']}")
+        print(f"websites        {cfg['sites'].get('engine', 'stylus')}")
         print(f"privacy         {cfg['privacy']['level']}  · sync {'on' if cfg['privacy']['sync'] else 'off'}")
         print(f"bookmarks       {len(cfg['bookmarks'])}  · add-ons listed {len(cfg['extensions'])}")
         return 0

@@ -1,0 +1,11 @@
+  :root, html.skin-theme-clientpref-night, html.skin-theme-clientpref-os {
+    --background-color-base: {{ c.base }} !important; --background-color-neutral-subtle: {{ c.mantle }} !important;
+    --background-color-neutral: {{ c.surface }} !important; --background-color-interactive-subtle: {{ c.mantle }} !important;
+    --background-color-interactive: {{ c.surface }} !important;
+    --color-base: {{ c.text }} !important; --color-emphasized: {{ c.text }} !important;
+    --color-subtle: {{ c.subtext }} !important; --color-placeholder: {{ c.overlay }} !important;
+    --color-progressive: {{ c.accent }} !important; --color-progressive--hover: {{ mix(c.accent, c.text, 0.2) }} !important;
+    --color-visited: {{ c.accent2 }} !important;
+    --border-color-base: {{ c.surface2 }} !important; --border-color-subtle: {{ c.surface }} !important;
+    --border-color-muted: {{ c.surface }} !important;
+  }
