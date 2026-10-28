@@ -190,6 +190,8 @@ def context(cfg: dict) -> dict:
         if cfg["sites"].get("duckduckgo", True) and sp.get("search") == "duckduckgo" else {},
         "packs": {k for k, v in cfg["sites"].get("packs", {}).items() if v},
         "animate": bool(cfg["general"].get("animate", True)),
+        "motion": (r["palette"].style.get("motion") if r["palette"].source == "swayforge" else "")
+        or cfg["general"].get("motion", "wave"),
         "shade_chars": "".join(sorted(asc.SHADE)),
     }
     ctx["site_styles"] = site_styles(ctx)

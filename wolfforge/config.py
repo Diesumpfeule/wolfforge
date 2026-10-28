@@ -72,6 +72,7 @@ DEFAULTS: dict = {
         "radius": -1,                # -1 = from theme (retro themes → 0)
         "art": "auto",
         "animate": True,             # ASCII art glints and twinkles (start page, new tab, app)
+        "motion": "wave",            # and moves: wave | float | drift | glint (follows swayforge when you do)
         "density": "compact",        # compact | normal | touch
     },
     "toolbar": {

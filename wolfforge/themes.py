@@ -71,7 +71,7 @@ def swayforge_palette() -> Palette | None:
         return None
     style = {"font": d.get("font", ""), "font_size": d.get("font_size", 13),
              "radius": d.get("radius", 4), "ascii": d.get("art", ""),
-             "layout": LAYOUT_FROM_SWAY.get(d.get("layout", ""), "classic")}
+             "layout": LAYOUT_FROM_SWAY.get(d.get("layout", ""), "classic"), "motion": d.get("motion", "")}
     return Palette(SYSTEM_ID, f"System ({d.get('label', d.get('theme', 'swayforge'))})",
                    bool(d.get("dark", True)), cols, style, "swayforge", d.get("art_lines"))
 

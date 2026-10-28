@@ -19,6 +19,8 @@ html, body { margin: 0; min-height: 100%; background: var(--base); color: var(--
 body { display: flex; justify-content: center; padding: 6vh 24px 40px; }
 main { width: min(1100px, 100%); }
 pre { margin: 0; font: inherit; line-height: 1.12; white-space: pre; }
+.two .ln { display: inline-block; will-change: transform; }
+.two pre, pre.two { padding-inline: 2ch; }
 .two .s { color: var(--shade); } .two .f { color: var(--accent); }
 .two .g { color: var(--text); text-shadow: 0 0 6px var(--accent); }
 .two .h { color: {{ c.yellow }}; text-shadow: 0 0 5px {{ c.yellow }}; }
@@ -179,23 +181,35 @@ tick(); setInterval(tick, 10000);
   const arts = [...document.querySelectorAll(".two pre, pre.two")].map(pre => {
     const lines = pre.textContent.split("\n"); pre.textContent = "";
     const cells = [];
+    const rowEls = [];
     lines.forEach((line, r) => {
+      const row = document.createElement("span"); row.className = "ln"; rowEls.push(row);
       [...line].forEach((ch, c) => {
         const sp = document.createElement("span"); sp.textContent = ch;
         if (ch !== " ") {
           const lone = (c === 0 || line[c - 1] === " ") && (c + 1 >= line.length || line[c + 1] === " ");
           cells.push({sp, r, c, ch, base: SHADE.has(ch) ? "s" : "f", spark: SPARK.has(ch) && lone, cls: ""});
         }
-        pre.appendChild(sp);
+        row.appendChild(sp);
       });
+      pre.appendChild(row);
       if (r < lines.length - 1) pre.appendChild(document.createTextNode("\n"));
     });
-    return {cells, width: Math.max(...lines.map(l => l.length)), rows: lines.length};
+    return {pre, rowEls, banner: !!pre.closest(".banner"), cells, width: Math.max(...lines.map(l => l.length)), rows: lines.length};
   });
+  // the art itself moves – same choices as in swayforge (theme.motion)
+  const MOTION = {{ motion | tojson }};
+  function move(a, t) {
+    if (a.banner && MOTION !== "glint") a.pre.style.transform = `translateY(${(0.18 * Math.sin(t * 1.6)).toFixed(3)}em)`;   // letters stay whole
+    else if (MOTION === "wave") a.rowEls.forEach((el, i) => (el.style.transform = `translateX(${(1.6 * Math.sin(t * 2.2 - i * 0.55)).toFixed(2)}ch)`));
+    else if (MOTION === "float") a.pre.style.transform = `translate(${(1.6 * Math.sin(t * 0.9)).toFixed(2)}ch, ${(0.35 * Math.sin(t * 1.3)).toFixed(2)}em)`;
+    else if (MOTION === "drift") a.pre.style.transform = `translateX(${(a.width / 6 * Math.sin(t * 0.35)).toFixed(2)}ch)`;
+  }
   const t0 = performance.now() - 3000;
   function frame() {
     const t = (performance.now() - t0) / 1000, slot = Math.floor(t * 4);
     for (const a of arts) {
+      move(a, t);
       const phase = (t % PERIOD) / SWEEP;
       const pos = phase <= 1 ? -BAND + phase * (a.width + a.rows * 2 + BAND * 2) : -1e9;
       for (const x of a.cells) {
@@ -207,7 +221,7 @@ tick(); setInterval(tick, 10000);
       }
     }
   }
-  frame(); setInterval(frame, 83);
+  frame(); setInterval(frame, MOTION === "glint" ? 83 : 40);
 })();
 {% endif %}
 document.addEventListener("keydown", e => {
