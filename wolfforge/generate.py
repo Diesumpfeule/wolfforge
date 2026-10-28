@@ -178,7 +178,7 @@ def context(cfg: dict) -> dict:
         "rgba": themes.rgba, "mix": themes.mix,
         "art_rows": len(r["art"]), "art_face": css_string(face), "art_shade": css_string(shade),
         "art_html": two_tone_html(r["art"]),
-        "banner_html": two_tone_html(asc.best_banner(banner_text, 100)),
+        "banner_html": two_tone_html(asc.best_banner(banner_text, 120)),
         "title": banner_text, "search_name": eng[0], "search_url": eng[1], "search_param": eng[2],
         "groups": bm.groups_for_startpage(cfg.get("bookmarks", [])),
         "ddg": ddg_params(c, r["palette"].dark, r["font"])

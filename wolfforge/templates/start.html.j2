@@ -22,8 +22,9 @@ pre { margin: 0; font: inherit; line-height: 1.12; white-space: pre; }
 .two .s { color: var(--shade); } .two .f { color: var(--accent); }
 .two .g { color: var(--text); text-shadow: 0 0 6px var(--accent); }
 .two .h { color: {{ c.yellow }}; text-shadow: 0 0 5px {{ c.yellow }}; }
-.banner { font-size: {{ font_size - 1 }}px; font-weight: bold; text-align: center; margin-bottom: 26px; overflow: hidden; }
-.banner pre { display: inline-block; text-align: left; }
+.banner { font-size: {{ font_size - 1 }}px; font-weight: normal; text-align: center; margin-bottom: 26px; overflow: hidden; }
+.banner pre { display: inline-block; text-align: left; line-height: 1; }
+.banner .f { text-shadow: 0.6px 0 currentColor, 0 0.6px currentColor, 0.6px 0.6px currentColor; }  /* closes hairline seams between block glyphs */
 .hero { display: flex; gap: 36px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
 .art { font-size: {{ font_size - 2 }}px; }
 .side { flex: 1 1 360px; max-width: 560px; }

@@ -1,0 +1,29 @@
+label = "Hollow Fog (grim, rust & grey)"
+dark = true
+ansi = ["#171715", "#8c1c13", "#5c6b4a", "#a8903a", "#4a5a63", "#6e4a55", "#587068", "#cfc9b8", "#3a3935", "#b5532a", "#7d8a6a", "#c2a94a", "#6a7d88", "#8e6674", "#7a948a", "#ece6d3"]
+
+[colors]
+crust = "#080807"
+mantle = "#0f0f0d"
+base = "#151513"
+surface = "#21211e"
+surface2 = "#3a3935"
+overlay = "#6b6a60"
+text = "#cfc9b8"
+subtext = "#8f8a78"
+accent = "#b5532a"
+accent2 = "#7d8a7a"
+red = "#8c1c13"
+green = "#5c6b4a"
+yellow = "#a8903a"
+orange = "#b5532a"
+blue = "#4a5a63"
+magenta = "#6e4a55"
+cyan = "#587068"
+
+[style]
+radius = 0
+layout = "dread"
+wallpaper = "fog"
+ascii = "lantern"
+boot = "bios"

@@ -1,0 +1,29 @@
+label = "Luna Silver (XP)"
+dark = false
+ansi = ["#000000", "#c83a1c", "#2d8a1e", "#b8860b", "#0054e3", "#8a3fc8", "#1c8fc0", "#4a4a42", "#716f64", "#e0542b", "#3c9a2b", "#d9a400", "#316ac5", "#a855d9", "#2aa6dc", "#1a1a1a"]
+
+[colors]
+crust = "#a9a9bb"
+mantle = "#dcdce6"
+base = "#efeff3"
+surface = "#ffffff"
+surface2 = "#a9a9bb"
+overlay = "#76768a"
+text = "#000000"
+subtext = "#4a4a58"
+accent = "#7a7d9a"
+accent2 = "#5f6389"
+red = "#c83a1c"
+green = "#3c9a2b"
+yellow = "#d9a400"
+orange = "#e8812a"
+blue = "#0054e3"
+magenta = "#8a3fc8"
+cyan = "#1c8fc0"
+
+[style]
+radius = 4
+layout = "winxp"
+wallpaper = "bliss"
+ascii = "forge"
+boot = "minimal"

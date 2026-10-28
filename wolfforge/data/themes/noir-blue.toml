@@ -1,0 +1,27 @@
+label = "Noir Blue (black & blue)"
+dark = true
+ansi = ["#000000", "#cc0403", "#19cb00", "#cecb00", "#0d73cc", "#cb1ed1", "#0dcdcd", "#dddddd", "#767676", "#f2201f", "#23fd00", "#fffd00", "#1a8fff", "#fd28ff", "#14ffff", "#ffffff"]
+
+[colors]
+crust = "#000000"
+mantle = "#050505"
+base = "#000000"
+surface = "#0d0d0d"
+surface2 = "#2a2a2a"
+overlay = "#4a4a4a"
+text = "#ffffff"
+subtext = "#c2c2c2"
+accent = "#7aa2f7"
+accent2 = "#ffffff"
+red = "#ff003c"
+green = "#00ff9c"
+yellow = "#e6c84a"
+orange = "#ff9e64"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+
+[style]
+radius = 10
+layout = "glass"
+wallpaper = "plain"

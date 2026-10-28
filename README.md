@@ -11,7 +11,7 @@
 
 wolfforge rebuilds LibreWolf's look and settings from a single file, `wolfforge.toml`, and gives you
 a terminal app to edit it. With [swayforge](https://github.com/Diesumpfeule/swayforge) it follows
-your system theme automatically; on its own it brings 15 themes and lets you make and save your own.
+your system theme automatically; on its own it brings 24 themes and lets you make and save your own.
 
 - **Theme** – toolbars, tabs, address bar, **every menu and panel** (app menu, context menus,
   downloads, extensions, bookmarks, site info), tooltips, sidebar, about: pages, new tab and start

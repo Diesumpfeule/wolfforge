@@ -1,0 +1,29 @@
+label = "Blood Ward (black & oxblood)"
+dark = true
+ansi = ["#0d0909", "#9b1b1b", "#4f6b3a", "#a8852a", "#3e5a70", "#7a3a55", "#3f7068", "#d8cfc0", "#352a2a", "#c42d2d", "#6b8a50", "#c9a23a", "#5a7e98", "#a05274", "#5a9a90", "#f0e8da"]
+
+[colors]
+crust = "#050303"
+mantle = "#0b0707"
+base = "#110b0b"
+surface = "#1d1313"
+surface2 = "#3a2626"
+overlay = "#6e5a56"
+text = "#d8cfc0"
+subtext = "#9c8f82"
+accent = "#b02222"
+accent2 = "#8a8a7a"
+red = "#c42d2d"
+green = "#4f6b3a"
+yellow = "#a8852a"
+orange = "#b5602a"
+blue = "#3e5a70"
+magenta = "#7a3a55"
+cyan = "#3f7068"
+
+[style]
+radius = 0
+layout = "dread"
+wallpaper = "fog"
+ascii = "skull"
+boot = "bios"
