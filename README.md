@@ -11,14 +11,17 @@
 
 wolfforge rebuilds LibreWolf's look and settings from a single file, `wolfforge.toml`, and gives you
 a terminal app to edit it. With [swayforge](https://github.com/Diesumpfeule/swayforge) it follows
-your system theme automatically; on its own it brings 24 themes and lets you make and save your own.
+your system theme automatically; on its own it brings 23 themes and lets you make and save your own.
 
 - **Theme** – toolbars, tabs, address bar, **every menu and panel** (app menu, context menus,
   downloads, extensions, bookmarks, site info), tooltips, sidebar, about: pages, new tab and start
   page in your colours and Nerd Font – on top of LibreWolf's built-in dark/light theme, so nothing
   falls back to grey. Follow swayforge, pick one, or edit colours and **save your own**.
 - **Layouts** – Classic, Compact (tabs + address bar in one row), Minimal (toolbar hides until
-  Ctrl+L), Classic 98 (bevels, title-bar tabs), Wired (terminal look). Tabs on top, vertical or hidden.
+  Ctrl+L), Classic 98 (bevels, title-bar tabs), Wired (terminal look), Cathedral (gothic), Glass
+  (see-through, floating tabs), Luna XP (blue title strip, green Go), Dread (inventory-slot tabs,
+  blood-red glow), Modern 11 (rounded pills). With swayforge, "take the layout from swayforge"
+  picks the matching one for every swayforge layout. Tabs on top, vertical or hidden.
 - **Your toolbar** – pick and order the buttons; saved in the file, restored on every machine.
 - **Websites** – safe touches that can't break anything (dark-mode request, scrollbars, selection,
   caret, focus ring), **DuckDuckGo in your colours** (its official appearance settings), experimental

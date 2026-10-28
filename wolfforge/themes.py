@@ -25,9 +25,10 @@ DATA = Path(__file__).parent / "data/themes"
 SYSTEM_ID = "system"
 
 # swayforge bar layout → browser layout that matches it
-LAYOUT_FROM_SWAY = {"win98": "win98", "win7": "classic", "wired": "wired", "minimal": "minimal",
-                    "sidebar": "classic", "modern": "classic", "solid": "classic",
-                    "cathedral": "cathedral"}
+LAYOUT_FROM_SWAY = {"win98": "win98", "win7": "glass", "wired": "wired", "minimal": "minimal",
+                    "sidebar": "compact", "modern": "classic", "solid": "classic",
+                    "cathedral": "cathedral", "glass": "glass", "winxp": "luna", "dread": "dread",
+                    "win11": "modern", "touch": "modern"}
 
 
 @dataclass
@@ -91,7 +92,8 @@ def active(cfg: dict) -> Palette:
     if g.get("follow_system") and SYSTEM_ID in pals:
         p = pals[SYSTEM_ID]
     else:
-        p = pals.get(g.get("theme", "")) or pals.get("type-o") or next(iter(pals.values()))
+        name = {"onyx": "noir"}.get(g.get("theme", ""), g.get("theme", ""))   # Onyx merged into Noir
+        p = pals.get(name) or pals.get("type-o") or next(iter(pals.values()))
     p = Palette(p.id, p.label, p.dark, dict(p.colors), dict(p.style), p.source, p.art_lines)
     acc = g.get("accent", "")
     if acc in p.colors:

@@ -1,25 +1,25 @@
 label = "Noir (black & white)"
 dark = true
-ansi = ["#000000", "#cc0403", "#19cb00", "#cecb00", "#0d73cc", "#cb1ed1", "#0dcdcd", "#dddddd", "#767676", "#f2201f", "#23fd00", "#fffd00", "#1a8fff", "#fd28ff", "#14ffff", "#ffffff"]
+ansi = ["#1a1a1a", "#c8c8c8", "#b0b0b0", "#d8d8d8", "#9a9a9a", "#bdbdbd", "#a8a8a8", "#8a8a8a", "#333333", "#e0e0e0", "#cfcfcf", "#f0f0f0", "#b8b8b8", "#d6d6d6", "#c4c4c4", "#ffffff"]
 
 [colors]
 crust = "#000000"
 mantle = "#050505"
 base = "#000000"
-surface = "#0d0d0d"
+surface = "#111111"
 surface2 = "#2a2a2a"
-overlay = "#4a4a4a"
+overlay = "#5c5c5c"
 text = "#ffffff"
-subtext = "#c2c2c2"
+subtext = "#b0b0b0"
 accent = "#ffffff"
-accent2 = "#7aa2f7"
-red = "#ff003c"
-green = "#00ff9c"
-yellow = "#e6c84a"
-orange = "#ff9e64"
-blue = "#7aa2f7"
-magenta = "#bb9af7"
-cyan = "#7dcfff"
+accent2 = "#8c8c8c"
+red = "#e6e6e6"
+green = "#bdbdbd"
+yellow = "#d9d9d9"
+orange = "#cccccc"
+blue = "#a6a6a6"
+magenta = "#c2c2c2"
+cyan = "#b3b3b3"
 
 [style]
 radius = 10

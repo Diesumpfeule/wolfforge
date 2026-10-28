@@ -343,6 +343,61 @@ menupopup::part(content), .panel-arrowcontent {
 }
 #urlbar-background { background: {{ c.crust }} !important; border: 1px solid {{ c.surface2 }} !important; }
 #identity-icon-box, #tracking-protection-icon-container { filter: grayscale(1); }
+{% elif layout == "glass" %}
+/* Glass: see-through toolbars over the page colour, floating rounded tabs, hairline edges */
+#navigator-toolbox { background: {{ rgba(c.mantle, 0.72) }} !important; border-bottom: 1px solid {{ rgba(c.text, 0.10) }} !important; }
+#TabsToolbar, #nav-bar, #PersonalToolbar { background: transparent !important; }
+.tabbrowser-tab .tab-background { border-radius: {{ [radius, 10] | max }}px !important; margin-block: 4px !important;
+  border: 1px solid transparent !important; }
+.tabbrowser-tab:hover .tab-background { border-color: {{ rgba(c.text, 0.12) }} !important; }
+.tabbrowser-tab[selected] .tab-background { background: {{ rgba(c.text, 0.08) }} !important;
+  border-color: {{ rgba(c.accent, 0.65) }} !important; box-shadow: 0 2px 10px {{ rgba("#000000", 0.25) }} !important; }
+#urlbar-background { border-radius: {{ [radius, 10] | max }}px !important; background: {{ rgba(c.text, 0.06) }} !important;
+  border: 1px solid {{ rgba(c.text, 0.14) }} !important; }
+#urlbar[focused] #urlbar-background { border-color: {{ rgba(c.accent, 0.7) }} !important; }
+menupopup::part(content), .panel-arrowcontent { border: 1px solid {{ rgba(c.text, 0.14) }} !important; }
+{% elif layout == "luna" %}
+{% set xp_hi = mix(c.accent, "#ffffff", 0.32) %}{% set xp_lo = mix(c.accent, "#000000", 0.18) %}
+/* Luna XP: blue gradient title strip with rounded tabs, beige toolbar, green Go */
+#TabsToolbar { background: linear-gradient(to bottom, {{ xp_hi }}, {{ c.accent }} 45%, {{ xp_lo }}) !important; }
+#TabsToolbar .tab-label, #TabsToolbar toolbarbutton { color: {{ on(c.accent) }} !important; fill: {{ on(c.accent) }} !important; }
+.tabbrowser-tab .tab-background { border-radius: 6px 6px 0 0 !important; margin-bottom: 0 !important;
+  background: linear-gradient(to bottom, {{ mix(c.accent, "#ffffff", 0.42) }}, {{ mix(c.accent, "#ffffff", 0.18) }}) !important;
+  border: 1px solid {{ mix(c.accent, "#000000", 0.4) }} !important; border-bottom: none !important; }
+.tabbrowser-tab[selected] .tab-background { background: {{ bv.face }} !important; }
+.tabbrowser-tab[selected] .tab-label { color: {{ c.text }} !important; font-weight: bold; }
+#nav-bar, #PersonalToolbar { background: {{ bv.face }} !important; border-top: 1px solid {{ bv.hi }} !important; }
+#urlbar-background { border-radius: 0 !important; background: {{ c.crust }} !important; border: 1px solid {{ mix(c.accent, "#000000", 0.25) }} !important; }
+#urlbar-go-button, #reload-button .toolbarbutton-icon { background: linear-gradient(to bottom, {{ mix(c.green, "#ffffff", 0.4) }}, {{ c.green }}) !important;
+  border-radius: 4px !important; fill: {{ on(c.green) }} !important; }
+menupopup::part(content), .panel-arrowcontent { border: 1px solid {{ mix(c.accent, "#000000", 0.3) }} !important; border-radius: 0 !important; }
+{% elif layout == "dread" %}
+/* Dread: tabs as worn inventory slots, rust rule, blood-red glow on the active one */
+#navigator-toolbox { background: linear-gradient(to bottom, {{ c.mantle }}, {{ c.crust }}) !important;
+  border-bottom: 2px solid {{ mix(c.orange, c.crust, 0.45) }} !important; }
+#TabsToolbar, #nav-bar, #PersonalToolbar { background: transparent !important; }
+.tabbrowser-tab .tab-background { border-radius: 0 !important; margin-block: 3px !important;
+  background: {{ rgba(c.base, 0.6) }} !important; border: 1px solid {{ c.surface2 }} !important;
+  box-shadow: inset 0 0 10px {{ rgba("#000000", 0.7) }} !important; }
+.tabbrowser-tab[selected] .tab-background { border-color: {{ c.red }} !important;
+  box-shadow: inset 0 0 12px {{ rgba(c.red, 0.35) }}, 0 0 8px {{ rgba(c.red, 0.35) }} !important; }
+.tab-label { text-transform: uppercase; letter-spacing: 1px; font-size: 0.92em; }
+#urlbar-background { border-radius: 0 !important; background: {{ c.crust }} !important; border: 1px solid {{ c.surface2 }} !important;
+  box-shadow: inset 0 0 8px {{ rgba("#000000", 0.8) }} !important; }
+#urlbar[focused] #urlbar-background { border-color: {{ c.red }} !important; }
+menupopup, panel { --panel-border-radius: 0 !important; }
+{% elif layout == "modern" %}
+/* Modern 11: roomy rounded pills, accent bar under the active tab, soft surfaces */
+#navigator-toolbox { background: {{ c.mantle }} !important; border-bottom: none !important; }
+#nav-bar { background: {{ c.base }} !important; padding-block: 4px !important; border-radius: 10px 10px 0 0 !important; margin-inline: 4px !important; }
+.tabbrowser-tab { padding-inline: 2px !important; }
+.tabbrowser-tab .tab-background { border-radius: 8px !important; margin-block: 5px !important; }
+.tabbrowser-tab[selected] .tab-background { background: {{ c.base }} !important;
+  box-shadow: inset 0 -3px 0 -1px {{ c.accent }}, 0 1px 4px {{ rgba("#000000", 0.18) }} !important; }
+#urlbar-background { border-radius: 999px !important; background: {{ c.surface }} !important; border: 1px solid transparent !important; }
+#urlbar[focused] #urlbar-background { border-color: {{ c.accent }} !important; }
+toolbarbutton .toolbarbutton-icon { border-radius: 8px !important; }
+menupopup, panel { --panel-border-radius: 10px !important; }
 {% endif %}
 {% if t.tabs == "vertical" %}
 

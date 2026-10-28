@@ -24,9 +24,14 @@ LAYOUTS = {
     "win98": "Classic 98 – bevelled buttons, sunken address bar, title-bar tabs",
     "wired": "Wired – terminal look: [brackets], > prompt, scanlines",
     "cathedral": "Cathedral – gothic: serif tabs with ✠, double rules, framed start page",
+    "glass": "Glass – see-through toolbars, floating rounded tabs, hairline edges, accent outline",
+    "luna": "Luna XP – blue title gradient, rounded tabs, green Go button, beige toolbar",
+    "dread": "Dread – survival horror: worn inventory-slot tabs, rust rules, blood-red focus glow",
+    "modern": "Modern 11 – soft rounded pills, roomy, accent bar under the active tab, Mica-like",
 }
 TAGS = {"classic": "░▒▓ librewolf", "compact": "▓▒░", "minimal": "░▒▓ librewolf",
-        "win98": "■ LibreWolf 98", "wired": "[ wired :: online ]", "cathedral": "❦ ✠ ❦"}
+        "win98": "■ LibreWolf 98", "wired": "[ wired :: online ]", "cathedral": "❦ ✠ ❦",
+        "glass": "◇ librewolf", "luna": "LibreWolf XP", "dread": "☠ save room", "modern": "librewolf"}
 
 _env = jinja2.Environment(loader=jinja2.FileSystemLoader(Path(__file__).parent / "templates"),
                           trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True,
@@ -175,7 +180,7 @@ def context(cfg: dict) -> dict:
         "mark": MARK, "p": r["palette"], "c": c, "radius": r["radius"], "font": r["font"],
         "font_size": r["font_size"], "layout": layout, "t": cfg["toolbar"], "s": sites, "sp": sp,
         "bv": bevel(c), "on_accent": themes.on(c["accent"]), "tag": TAGS.get(layout, ""),
-        "rgba": themes.rgba, "mix": themes.mix,
+        "rgba": themes.rgba, "mix": themes.mix, "on": themes.on,
         "art_rows": len(r["art"]), "art_face": css_string(face), "art_shade": css_string(shade),
         "art_html": two_tone_html(r["art"]),
         "banner_html": two_tone_html(asc.best_banner(banner_text, 120)),
