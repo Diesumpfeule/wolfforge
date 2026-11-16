@@ -34,6 +34,12 @@ your system theme automatically; on its own it brings 23 themes and lets you mak
 - **Bookmarks in the file** – pull from LibreWolf, push back, edit by hand.
 - **From Firefox** – bookmarks, add-on list (one-click install pages) and saved passwords.
 
+## On the phone
+
+There is a companion for **Firefox Nightly on Android**: websites in your colours, the theme packs,
+per-site rules and the ASCII start page – see [android/](android/README.md). It imports themes from
+[droidforge](https://github.com/Diesumpfeule/droidforge), the launcher in the same look.
+
 ## Screenshots
 
 <table>

@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "wolfforge",
+  "version": "1.0.0",
+  "description": "Your wolfforge theme on Firefox for Android: themed websites, per-site rules and an ASCII start page.",
+  "author": "Diesumpfeule",
+  "homepage_url": "https://github.com/Diesumpfeule/wolfforge",
+  "icons": { "48": "icon.svg", "96": "icon.svg" },
+  "browser_specific_settings": {
+    "gecko": { "id": "wolfforge@diesumpfeule.github.io", "strict_min_version": "128.0" },
+    "gecko_android": { "strict_min_version": "128.0" }
+  },
+  "permissions": ["storage", "tabs", "<all_urls>"],
+  "background": { "scripts": ["common.js", "background.js"], "persistent": false },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_start" }
+  ],
+  "browser_action": { "default_title": "wolfforge", "default_popup": "popup.html", "default_icon": "icon.svg" },
+  "options_ui": { "page": "options.html", "open_in_tab": true }
+}

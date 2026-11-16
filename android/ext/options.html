@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wolfforge settings</title>
+<link rel="stylesheet" href="page.css">
+<style>body { padding: 18px 14px 60px; } main { max-width: 760px; margin: 0 auto; }</style>
+</head>
+<body>
+<main>
+  <h1 class="mono">wolfforge</h1>
+  <p>Your theme on Firefox for Android. Changes are saved at once; open pages show them after a reload.</p>
+  <div class="btns"><button class="primary" id="openStart">Open the start page</button></div>
+
+  <h2>Theme</h2>
+  <div class="card">
+    <label class="row"><span class="grow">Follow the phone's dark mode<small>One theme for dark, one for light</small></span>
+      <input type="checkbox" id="auto"></label>
+  </div>
+  <p id="themeHint"></p>
+  <div class="themes" id="themes"></div>
+  <div id="lightBox" hidden>
+    <p>Theme while the phone is in light mode:</p>
+    <div class="themes" id="themesLight"></div>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <div class="row"><label class="grow" for="accent">Accent colour</label><select id="accent"></select></div>
+  </div>
+
+  <h2>Your own themes</h2>
+  <div id="custom"></div>
+  <div class="btns">
+    <button id="newTheme">New theme from the current one</button>
+    <button id="importTheme">Import a theme file</button>
+    <input type="file" id="themeFile" hidden accept=".json,.toml,application/json,text/plain,*/*">
+  </div>
+  <p>Import takes a theme exported from droidforge, a droidforge backup (its theme and your own themes), or a
+    swayforge / wolfforge theme file (.toml).</p>
+
+  <h2>Websites</h2>
+  <div class="card"><label class="row"><span class="grow">Theme websites<small>The switch for everything below</small></span>
+    <input type="checkbox" id="enabled"></label></div>
+  <div id="touches"></div>
+  <p>Theme packs recolour a whole site through the site's own colour settings (experimental):</p>
+  <div id="packs"></div>
+
+  <h2>Rules for single sites</h2>
+  <p>Fastest way: open the site, then <b>menu → Extensions → wolfforge</b> and pick what should happen there.</p>
+  <div id="rules"></div>
+  <div class="card">
+    <div class="row"><input type="text" id="ruleDomain" class="grow" placeholder="example.org" autocapitalize="off" spellcheck="false">
+      <select id="ruleMode"></select><button id="ruleAdd">Add</button></div>
+  </div>
+
+  <h2>Start page</h2>
+  <div class="card"><div class="row"><label class="grow" for="title">Title<small>Shown in block letters; empty = none</small></label>
+    <input type="text" id="title" style="width:11em" maxlength="16" autocapitalize="off"></div></div>
+  <div class="card"><div class="row"><label class="grow" for="art">ASCII picture</label><select id="art"></select></div></div>
+  <div class="card"><div class="row"><label class="grow" for="style">Style</label><select id="style"></select></div></div>
+  <div class="card"><label class="row"><span class="grow">The picture moves</span><input type="checkbox" id="animate"></label></div>
+  <div class="card"><label class="row"><span class="grow">Clock and date</span><input type="checkbox" id="clock"></label></div>
+  <div class="card"><label class="row"><span class="grow">Seconds</span><input type="checkbox" id="seconds"></label></div>
+  <div class="card"><div class="row"><label class="grow" for="hour">12 or 24 hours</label><select id="hour"></select></div></div>
+  <div class="card"><div class="row"><label class="grow" for="search">Search with</label><select id="search"></select></div></div>
+  <div class="card"><label class="row"><span class="grow">DuckDuckGo in your colours<small>Uses DuckDuckGo's own appearance settings</small></span>
+    <input type="checkbox" id="ddgColors"></label></div>
+  <div class="card">
+    <label for="bookmarks">Bookmarks<small style="display:block;color:var(--subtext);font-size:13px">One per line: Name | address. A line starting with # begins a group.</small></label>
+    <textarea id="bookmarks" spellcheck="false" autocapitalize="off"></textarea>
+  </div>
+  <p>Firefox for Android cannot use an extension page as its home page. Open the start page from
+    <b>menu → Extensions → wolfforge → Start page</b>, and keep it as a pinned tab or add it to your shortcuts.</p>
+
+  <h2>DuckDuckGo as search engine, in your colours</h2>
+  <p>Firefox → Settings → Search → Default search engine → Add search engine → Other. Paste this as the search string:</p>
+  <div class="card"><code id="ddg" style="word-break:break-all;font-size:13px"></code>
+    <div class="btns"><button id="ddgCopy">Copy</button></div></div>
+
+  <h2>Privacy switches (about:config)</h2>
+  <p>An extension cannot change these for you. In Firefox Nightly, open <code>about:config</code>, search for the name and set the value.
+    Each row says what you give up.</p>
+  <div class="card"><div class="row"><label class="grow" for="level">Level</label><select id="level"></select></div></div>
+  <div id="privacy"></div>
+
+  <h2>Backup</h2>
+  <p>All wolfforge settings as text. Copy it somewhere safe; paste it here on another phone and press Restore.</p>
+  <textarea id="backup" spellcheck="false"></textarea>
+  <div class="btns"><button id="backupCopy">Copy</button><button id="backupRestore">Restore from the text above</button>
+    <button id="reset">Reset everything</button></div>
+  <p id="status" class="ok" role="status"></p>
+  <p>wolfforge for Android – a proof of concept, written by Claude (AI). No warranty.</p>
+</main>
+<script src="common.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

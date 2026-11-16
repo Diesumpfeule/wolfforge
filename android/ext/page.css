@@ -1,0 +1,33 @@
+/* Shared by the popup, the settings and the start page. Colours arrive as custom properties on <html>. */
+* { box-sizing: border-box; }
+html { background: var(--base); color: var(--text); -webkit-text-size-adjust: 100%; }
+body { margin: 0; font: 16px/1.45 system-ui, sans-serif; }
+.mono, pre, code { font-family: ui-monospace, "DejaVu Sans Mono", "Noto Sans Mono", monospace; }
+a { color: var(--accent); }
+h1 { font-size: 24px; margin: 0 0 4px; color: var(--accent); }
+h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 28px 4px 10px; }
+p, .note { color: var(--subtext); font-size: 14px; margin: 6px 4px 12px; }
+.card { background: var(--surface); border: 1px solid var(--surface2); border-radius: var(--r); padding: 12px 14px; margin-bottom: 8px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; min-height: 30px; }
+.row > .grow { flex: 1 1 130px; min-width: 0; overflow-wrap: anywhere; }
+code { overflow-wrap: anywhere; }
+.row small { display: block; color: var(--subtext); font-size: 13px; }
+button, select, input[type=text], input[type=url], textarea {
+  font: inherit; color: var(--text); background: var(--mantle); border: 1px solid var(--surface2);
+  border-radius: var(--r); padding: 9px 12px; max-width: 100%;
+}
+textarea { width: 100%; min-height: 150px; font-family: ui-monospace, monospace; font-size: 13px; }
+input[type=text], input[type=url] { width: 100%; }
+button { cursor: pointer; }
+button.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); font-weight: 600; }
+button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accent); flex: none; }
+input[type=color] { width: 44px; height: 34px; padding: 0; border: 1px solid var(--surface2); border-radius: 6px; background: none; flex: none; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.theme { border: 2px solid transparent; border-radius: var(--r); padding: 10px; text-align: left; font-size: 14px; }
+.theme.on { border-color: var(--accent); }
+.theme i { display: inline-block; width: 14px; height: 14px; margin: 6px 3px 0 0; border-radius: 50%; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; font-size: 14px; }
+.kv code { word-break: break-all; }
+.ok { color: var(--green); }

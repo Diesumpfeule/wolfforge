@@ -1,0 +1,43 @@
+name: android
+
+on:
+  push:
+    branches: [main]
+    paths: ["android/**", "wolfforge/templates/sites/**", "wolfforge/data/**", "wolfforge/prefs.py", ".github/workflows/android.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android
+  cancel-in-progress: true
+
+jobs:
+  xpi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jinja2
+      - name: data.json matches the desktop themes and styles
+        run: python3 android/build.py --check
+      - name: Tests
+        run: node android/test.js
+      - name: Build
+        run: python3 android/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wolfforge-android
+          path: android/dist/wolfforge-android.xpi
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete android --cleanup-tag -y 2>/dev/null || true
+          sleep 3
+          gh release create android android/dist/wolfforge-android.xpi --target "$GITHUB_SHA" \
+            --title "wolfforge for Firefox on Android" \
+            --notes "Built from commit $GITHUB_SHA. How to install: see android/README.md."
